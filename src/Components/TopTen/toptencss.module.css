@@ -1,0 +1,119 @@
+.toptenwrapper{
+    --plate-cover-border-width: 0.15rem;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
+    max-width: 700px;
+}
+
+.toptenresults{
+    width: 90%;
+}
+
+.podium{
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+    /* height: 6rem; */
+    aspect-ratio: 2 / 0.5;
+    margin-bottom: var(--heightmargin)
+}
+
+.platecover{
+    border: 0.1em solid;
+    /* width: 31%; */
+    aspect-ratio: 2/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'License-Plate';
+    text-align: center;
+    border-radius: 0.2em;
+    font-size: 1.8rem;
+    position: absolute;
+}
+
+.moneyamount{
+    position: absolute;
+    font-family: 'Oswald';
+    font-size: 50%;
+    bottom: 0%;
+    transform: translateY(calc(100% + 0.2em));
+
+}
+
+.crown{
+    box-sizing: border-box;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 20%; */
+    font-size: 1em;
+    aspect-ratio: 1/1;
+    /* padding: 0.1rem; */
+    background-color: #101010;
+    /* border: 0.1rem solid #101010; */
+    /* background: linear-gradient(to right, rgba(0,0,0,0) 40%, rgba(16, 16, 16, 1) 42.5%); */
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    transform: translate(calc(-50% - (var(--plate-cover-border-width) / 2)), calc(-50% - (var(--plate-cover-border-width) / 2)));
+    /* top: 0%;
+    left: 0%; */
+}
+
+.toptentable{
+    width: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    padding-top: 1rem;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.toptentable > table{
+    width: 100%;
+    /* max-width: 300px; */
+}
+
+.toptenthead > tr > th{
+    font-size: 0.9rem;
+    font-weight: normal;
+    padding-bottom: 1rem;
+}
+
+.toptentbody > tr > td{
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding-bottom: 0.4rem;
+}
+
+.rankth{
+    text-align: center;
+}
+
+.plateth{
+    text-align: left;
+    padding-left: 2rem;
+}
+
+.totalfinesth{
+    text-align: right;
+}
+
+.ranktd{
+    text-align: center;
+}
+
+.platetd{
+    text-align: left;
+    padding-left: 2rem;
+}
+
+.totalfinestd{
+    text-align: right;
+}

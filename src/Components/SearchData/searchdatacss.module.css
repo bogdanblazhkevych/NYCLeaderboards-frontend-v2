@@ -1,0 +1,221 @@
+.platesearchwrapper{
+    margin-top: 1rem;
+    width: 100vw;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* font-size: var(--platesearchwrapperfontsize); */
+    font-size: calc(81vw / 4);
+    --contributiontextmargin: 1rem;
+    
+}
+
+.bigplatewrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.bigplate{
+    border: 0.3rem solid;
+    width: 90%;
+    box-sizing: border-box;
+    aspect-ratio: 2 / 1;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'License-Plate';
+    font-size: 100%;
+    position: relative;
+}
+
+.tablewrapperfadewrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.totalfines{
+    font-family: 'Oswald';
+    position: absolute;
+    font-size: 30%;
+    bottom: 0px;
+    background-color: #101010;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    border: 0.3rem solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    transform: translateY(calc(50% + 0.3rem));
+}
+
+.totalfinesrank{
+    margin-top: -10%;
+}
+
+.tablewrapper{
+    /* border: 1px solid red; */
+    /* margin-top: var(--margin); */
+    margin-top: calc(0.096 * 100vw + 15px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15%;
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+}
+
+.datatable{
+    /* border: 1px solid blue; */
+    width: 90vw;
+}
+
+.offenseth, .offendetd{
+    text-align: left;
+    /* padding-right: 20%; */
+}
+
+.dateth, .datetd{
+    text-align: left;
+}
+
+.fineth, .finetd{
+    text-align: right;
+}
+
+.tallywrapper{
+    /* border: 1px solid green; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tallywrapper > h1{
+    margin: 2%;
+    font-size: 170%;
+}
+
+.tallytable{
+    width: 90%;
+    /* border: 1px solid white; */
+}
+
+
+.tallythviolation, .violationtallytd{
+    text-align: left;
+}
+
+.violationtallytd{
+    display: flex;
+    align-items: center;
+}
+
+.tallythcount, .counttd{
+    text-align: right;
+}
+
+.contributiontext{
+    font-family: 'Oswald';
+    text-align: center;
+    margin-top: var(--contributiontextmargin);
+    font-size: 25%;
+    width: 90%;
+}
+
+.contributiontotalfines{
+    font-size: 250%;
+    color: #008000;
+}
+
+.contributionpercent{
+    color: #800000;
+    font-size: 250%;
+}
+
+.piechartwrapper{
+    width: 100%;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 800px){
+    .platesearchwrapper{
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 630px;
+        font-size: 77px;
+    }
+    .bigplatewrapper{
+        display: flex;
+        width: 49%;
+        min-height: 189px;
+    }
+
+    .bigplate{
+        width: 100%;
+        align-self: flex-start;
+    }
+    .tablewrapper{
+        width: 100%;
+        margin-top: 0px;
+        min-height: 189px;
+        max-height: 189px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        position: relative;
+        align-self: flex-start;
+    }
+
+    .tablewrapperfadewrapper{
+        width: 49%;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .datatable{
+        width: 100%;
+    }
+
+    .tablewrapperfadewrapper::after{
+        display: inline;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 25px;
+        background: linear-gradient(to bottom, transparent, #101010);
+    }
+    .tablewrapper::-webkit-scrollbar {
+        display: none;
+    }
+    .contributiontext{
+        width: 49%;
+    }
+    .tallywrapper{
+        padding-bottom: 25px;
+    }
+    .piechartwrapper{
+        width: 49%;
+    }
+}

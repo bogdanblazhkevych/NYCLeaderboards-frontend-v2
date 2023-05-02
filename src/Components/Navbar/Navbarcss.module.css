@@ -1,0 +1,55 @@
+.navbar{
+    background-color: #101010;
+    display: flex;
+    --button-background: #2D2D2D;
+    --button-color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    max-width: 700px;
+}
+.title{
+    font-family: 'Oswald';
+    color: white;
+    font-size: calc(1.375rem + 0.5vw);
+    padding-left: 5%;
+}
+
+.menu{
+    display: flex;
+    /* padding: 0.5rem; */
+    padding-right: 5%;
+    gap: 1rem;
+}
+
+.menu > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--button-color);
+    /* background-color: var(--button-background); */
+    background-color: var(--secondary);
+    font-size: calc(1.375rem + 0.3vw);
+    padding: 0.4rem;
+    border-radius: 50%;
+}
+
+.searchbutton, .toptenbutton:hover{
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px){
+    .title{
+        padding-top: 0px;
+        width: 40%;
+        line-height: 7vw;
+    }
+}
+
+@media only screen and (min-width: 800px){
+    .navbar{
+        padding-top: 0.8rem;
+    }
+}
+
+
