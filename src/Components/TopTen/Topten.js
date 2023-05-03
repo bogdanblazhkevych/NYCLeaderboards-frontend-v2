@@ -6,7 +6,7 @@ import { config } from '../config.js';
 
 export default function Topten({currentHeat}){
 
-    const [topTen, setTopTen] = useState([]);
+    const [topTen, setTopTen] = useState(config.topTenPlaceHolder);
 
     useEffect(() => {
 

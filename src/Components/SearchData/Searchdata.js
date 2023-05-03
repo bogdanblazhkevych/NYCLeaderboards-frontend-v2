@@ -23,8 +23,8 @@ export default function Searchdata({currentHeat, currentQuerry}){
 
     const display = useRef(null)
 
-    const [data, setData] = useState([])
-    const [violationCount, setViolationCount] = useState({})
+    const [data, setData] = useState(config.searchPlaceHolder)
+    const [violationCount, setViolationCount] = useState(config.countPlaceHolder)
     const [totalFines, setTotalFines] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -149,6 +149,7 @@ export default function Searchdata({currentHeat, currentQuerry}){
         let sortedObject = Object.fromEntries(sortedEntries)
 
         setViolationCount(sortedObject)
+        console.log(sortedObject)
     }
 
     function addCurrencyFormat(str) {
