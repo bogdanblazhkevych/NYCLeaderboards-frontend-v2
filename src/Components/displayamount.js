@@ -1,27 +1,24 @@
 import React, {useEffect, useState} from 'react'
 
-export default function DisplayAmount({inputNumber}){
+function addCurrencyFormat(str) {
+    const num = parseInt(str);
 
-    const [display, setDisplay] = useState('');
-
-    function addCurrencyFormat(str) {
-
-        const num = parseInt(str);
-        if (isNaN(num)) {
-            return str;
-        }
-
-        const formattedNum = num.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-        });
-        
-        return formattedNum;
-
+    if (isNaN(num)) {
+        return str;
     }
 
-    useEffect(()=>{
+    const formattedNum = num.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+    
+    return formattedNum;
+}
 
+export default function DisplayAmount({inputNumber}){
+    const [display, setDisplay] = useState('');
+
+    useEffect(()=>{
         async function delay(duration) {
             return new Promise((resolve) => {
                 setTimeout(resolve, duration);
@@ -36,10 +33,7 @@ export default function DisplayAmount({inputNumber}){
         };
 
         increment(inputNumber)
-
     }, [inputNumber])
 
-    return(
-        <>{display}</>
-    )
+    return(<>{display}</>)
 }

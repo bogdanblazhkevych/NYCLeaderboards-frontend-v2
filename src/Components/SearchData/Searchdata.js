@@ -1,6 +1,5 @@
-import {useState, useEffect, useRef} from 'react'
+import { useState, useEffect, useRef } from 'react'
 import searchdatacss from '/Users/bogdanblazhkevych/Desktop/new-violations-frontend/src/Components/SearchData/searchdatacss.module.css'
-import DisplayAmount from '../displayamount'
 import PieChart from '../PieChart/PieChart'
 import { config } from '../config'
 
@@ -69,37 +68,22 @@ export default function Searchdata({currentHeat, currentQuerry}){
     function cleanData(data) {
         
         const cleanData = data.map((instance) => {
-            
-            if (instance.violation === "FAIL TO DSPLY MUNI METER RECPT") {
-                instance.violation = "NO METER RECPT"
-                return instance
-            } else if (instance.violation === "NO STANDING-DAY/TIME LIMITS") {
-                instance.violation = "NO STANDING"
-                return instance
-            } else if (instance.violation === "NO STANDING-COMM METER ZONE") {
-                instance.violation = "NO STANDING COM ZONE"
-                return instance
-            } else if (instance.violation === "INSP. STICKER-EXPIRED/MISSING") {
-                instance.violation = "NO INSPECTION"
-                return instance
-            } else if (instance.violation === "INSP STICKER-MUTILATED/C'FEIT") {
-                instance.violation = "FAKE/OBSTRUCTED INSP"
-                return instance
-            } else if (instance.violation === "NO PARKING-DAY/TIME LIMITS") {
-                instance.violation = "NO PARKING"
-                return instance
-            } else if (instance.violation === "NO PARKING-STREET CLEANING") {
-                instance.violation = "STREET CLEANING"
-                return instance
-            } else if (instance.violation === "PHTO SCHOOL ZN SPEED VIOLATION") {
-                instance.violation = "SCHOOL ZONE SPEEDING"
-                return instance
-            } else if (instance.violation === "FAILURE TO STOP AT RED LIGHT") {
-                instance.violation = "RED LIGHT CAMERA"
-                return instance
-            } else {
-                return instance
+            const message = {
+                "FAIL TO DSPLY MUNI METER RECPT": "NO METER RECPT",
+                "NO STANDING-DAY/TIME LIMITS": "NO STANDING",
+                "NO STANDING-COMM METER ZONE": "NO STANDING COM ZONE",
+                "INSP. STICKER-EXPIRED/MISSING": "NO INSPECTION",
+                "INSP STICKER-MUTILATED/C'FEIT": "FAKE/OBSTRUCTED INSP",
+                "NO PARKING-DAY/TIME LIMITS": "STREET CLEANING",
+                "PHTO SCHOOL ZN SPEED VIOLATION": "SCHOOL ZONE SPEEDING",
+                "FAILURE TO STOP AT RED LIGHT": "RED LIGHT CAMERA"
+            }[instance.violation];
+
+            if (message) {
+                instance.violation = message;
             }
+
+            return instance;
         })
 
         return cleanData
@@ -142,18 +126,16 @@ export default function Searchdata({currentHeat, currentQuerry}){
             }
         })
 
-        let sortedEntries = Object.entries(countObject).sort((a, b) => {
+        const sortedEntries = Object.entries(countObject).sort((a, b) => {
             return b[1] - a[1]
         })
 
-        let sortedObject = Object.fromEntries(sortedEntries)
-
-        setViolationCount(sortedObject)
-        console.log(sortedObject)
+        // let sortedObject = Object.fromEntries(sortedEntries)
+        // console.log(sortedEntries)
+        setViolationCount(sortedEntries)
     }
 
     function addCurrencyFormat(str) {
-
         const num = parseInt(str);
         if (isNaN(num)) {
             return str;
@@ -179,18 +161,16 @@ export default function Searchdata({currentHeat, currentQuerry}){
     }
 
     function splitString(str) {
-        // if(window.innerWidth < 600) {
-        //     return str
-        // }
         if(typeof str !== "string") {
-            return
+            return;
         }
+
         if(str.length > 27) {
             let newString = str.slice(0, 27) + "..."
             return newString
-        }else { 
-            return str
         }
+
+        return str
     }
 
     function getPercent(totalsum, platesum) {
@@ -199,64 +179,40 @@ export default function Searchdata({currentHeat, currentQuerry}){
         return percent
     }
 
-    if(data.length === 0){
+    if (data.length === 0){
         return <>loading...</>
     }
-    // if(totalFines.length === 0){
-    //     return <>loading...</>
-    // }
 
     return(
         <div className={searchdatacss.platesearchwrapper} id="platesearchwrapper">
-            
             <div className={searchdatacss.bigplatewrapper} id="bigplatewrapper">
             <div ref={display} className={searchdatacss.bigplate} id={"bigplate" + data[0].sequence}>
-
                 {data[0].plate}
-
                 <div className={searchdatacss.totalfines} id="totalfines">
-
                     <div className={searchdatacss.totalfinesamount}>
-
                         {data.length !== 0 && addCurrencyFormat(data[0].total_fines)}
-
                     </div>
-
                     <div className={searchdatacss.totalfinesrank}>
-
                         RANK {data[0].sequence}
-
                     </div>
-
                 </div>
-
             </div>      
             </div>
-
-
 
             <div className={searchdatacss.tablewrapperfadewrapper}>
                 <span className={searchdatacss.fade}></span>
                 <div className={searchdatacss.tablewrapper} id="tablewrapper">
                     <table className={searchdatacss.datatable}>
-
                         <thead>
-
                             <tr className={searchdatacss.searchtr}>
-
                                 <th className={searchdatacss.offenseth}>Offense</th>
                                 <th className={searchdatacss.dateth}>Date</th>
                                 <th className={searchdatacss.fineth}>Fine</th>
-
                             </tr>
-
                         </thead>
-
                         <tbody>
-
                             {data.map((violation)=>(
                                 <tr className={searchdatacss.searchtr} key={violation.summons_number}>
-
                                     <td className={searchdatacss.offensetd}>{splitString(violation.violation)}</td>
                                     <td className={searchdatacss.datetd}>{makeDate(violation.issue_date)}</td>
                                     {/* <td className={searchdatacss.finetd}><DisplayAmount inputNumber={violation.fine_amount}/></td> */}
@@ -288,10 +244,10 @@ export default function Searchdata({currentHeat, currentQuerry}){
 
                             <tbody>
 
-                                {Object.keys(violationCount).map((key, index) => (
+                                {violationCount.map((key, index) => (
                                     <tr className={searchdatacss.tallytr} key={index}>
-                                        <td className={searchdatacss.violationtallytd}>{key}<div style={{height: "0.8rem", aspectRatio: "1/1", backgroundColor: colors[index % colors.length], display: "inline-block", borderRadius: "50%", marginLeft: "0.5rem"}}></div></td>
-                                        <td className={searchdatacss.counttd}>{violationCount[key]}</td>
+                                        <td className={searchdatacss.violationtallytd}>{key[0]}<div style={{height: "0.8rem", aspectRatio: "1/1", backgroundColor: colors[index % colors.length], display: "inline-block", borderRadius: "50%", marginLeft: "0.5rem"}}></div></td>
+                                        <td className={searchdatacss.counttd}>{key[1]}</td>
                                     </tr>
                                 ))}
 

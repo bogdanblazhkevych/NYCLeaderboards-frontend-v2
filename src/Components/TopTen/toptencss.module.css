@@ -76,8 +76,9 @@
 }
 
 .toptentable > table{
-    width: 100%;
-    /* max-width: 300px; */
+    /* width: 50%; */
+    width: 100%
+    /* max-width: 400px; */
 }
 
 .toptenthead > tr > th{

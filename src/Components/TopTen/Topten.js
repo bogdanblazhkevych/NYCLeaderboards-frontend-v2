@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import toptencss from '/Users/bogdanblazhkevych/Desktop/new-violations-frontend/src/Components/TopTen/toptencss.module.css'
+import toptencss from './toptencss.module.css'
 import DisplayAmount from '../displayamount.js';
 import {GiLaurelCrown} from 'react-icons/gi';
 import { config } from '../config.js';
@@ -11,12 +11,10 @@ export default function Topten({currentHeat}){
     useEffect(() => {
 
         async function getTopTenData() {
-            fetch(`${config.backendUrl}/topten/${currentHeat}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data) //remove console log when done
-                setTopTen(data);
-            })
+            const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`);
+            const json = await response.json();
+            console.log(json);
+            setTopTen(json);
         }
 
         getTopTenData();

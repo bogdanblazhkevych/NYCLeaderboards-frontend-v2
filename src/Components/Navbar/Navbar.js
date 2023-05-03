@@ -5,7 +5,6 @@ import { ImSearch } from 'react-icons/im'
 import { useEffect, useState } from 'react'
 
 export default function Navbar({ setCurrentDisplay, currentDisplay }) {
-
     const [currentSelection, setCurrentSelection] = useState("topten")
 
     useEffect(()=> {
@@ -21,9 +20,9 @@ export default function Navbar({ setCurrentDisplay, currentDisplay }) {
     function changeStyle(target) {
         if(target === currentSelection){
             return {color: '#2D2D2D', backgroundColor: 'white'}
-        }else{
-            return {}
         }
+
+        return {}
     }
 
     return(

@@ -1,5 +1,5 @@
 export const config = {
-    backendUrl: "nope", //delete when uploading to git. to tesl loacly, replace with http://<your ip>:<your server port>
+    backendUrl: "no", //delete when uploading to git. to tesl loacly, replace with http://<your ip>:<your server port>
     topTenPlaceHolder : [
         {
             "plate": "BVH5939",
@@ -483,15 +483,42 @@ export const config = {
             "sequence": 633
         }
     ],
-    countPlaceHolder: {
-        "NO METER RECPT": 10,
-        "SCHOOL ZONE SPEEDING": 8,
-        "REG. STICKER-EXPIRED/MISSING": 6,
-        "FIRE HYDRANT": 4,
-        "NO PARKING": 4,
-        "STREET CLEANING": 3,
-        "EXPIRED MUNI METER": 1,
-        "NO STANDING-EXC. TRUCK LOADING": 1,
-        "NO INSPECTION": 1
-    }
+    countPlaceHolder: [
+        [
+            "NO METER RECPT",
+            10
+        ],
+        [
+            "SCHOOL ZONE SPEEDING",
+            8
+        ],
+        [
+            "REG. STICKER-EXPIRED/MISSING",
+            6
+        ],
+        [
+            "FIRE HYDRANT",
+            4
+        ],
+        [
+            "STREET CLEANING",
+            4
+        ],
+        [
+            "NO PARKING-STREET CLEANING",
+            3
+        ],
+        [
+            "EXPIRED MUNI METER",
+            1
+        ],
+        [
+            "NO STANDING-EXC. TRUCK LOADING",
+            1
+        ],
+        [
+            "NO INSPECTION",
+            1
+        ]
+    ]
 }

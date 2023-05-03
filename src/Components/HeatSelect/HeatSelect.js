@@ -1,6 +1,6 @@
 import React from "react";
 import heatselectcss from '/Users/bogdanblazhkevych/Desktop/new-violations-frontend/src/Components/HeatSelect/heatselectcss.module.css'
-import {useState, useEffect, useRef} from 'react'
+import { useState } from 'react'
 
 export default function HeatSelect({setCurrentHeat}){
 
@@ -15,9 +15,9 @@ export default function HeatSelect({setCurrentHeat}){
         if(divId === styledId){
             // return {color: '#101010', backgroundColor: '#F5F5F7', fontWeight: 'bold'}
             return {color: 'white', backgroundColor: 'rgb(39,45,65)', fontWeight: 'bold'}
-        }else{
-            return {}
         }
+
+        return {}
     }
 
     return(

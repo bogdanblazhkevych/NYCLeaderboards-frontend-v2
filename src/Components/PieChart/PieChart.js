@@ -1,9 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 export default function PieChart({dataProps, colors}){
-
     ChartJS.register(ArcElement, Tooltip, Legend);
 
     // const colors = [        
@@ -96,7 +95,7 @@ export default function PieChart({dataProps, colors}){
     //     "#573a5f"
     // ]
 
-    const violationsCount = dataProps
+    // const violationsCount = dataProps
 
     // const newObject = {}
 
@@ -108,21 +107,23 @@ export default function PieChart({dataProps, colors}){
     //     newObject[newObjectSortedKeys[key]] = violationsCount[newObjectSortedKeys[key]]
     // }
 
-    const violationsLables = Object.keys(violationsCount)
-
-    const violationsData = Object.entries(violationsCount).map((entry, index) => {
+    const dataValues = dataProps.map((entry) => {
         return entry[1]
     })
 
+    const dataLabels = dataProps.map((entry) => {
+        return entry[0]
+    })
+ 
     const data = {
-        labels: violationsLables,
+        labels: dataLabels,
         datasets: [
-          {
-            label: " # of Violations",
-            data: violationsData,
-            backgroundColor: colors,
-            borderWidth: 1
-          }
+            {
+                label: " # of Violations",
+                data: dataValues,
+                backgroundColor: colors,
+                borderWidth: 1
+            }
         ]
     }
 
@@ -130,7 +131,6 @@ export default function PieChart({dataProps, colors}){
         layout: {
             padding: 20
         },
-
         plugins: {
             legend: {
                 display: false,
@@ -139,8 +139,6 @@ export default function PieChart({dataProps, colors}){
             }
         }
     }
-    
-
 
     return(
         <>

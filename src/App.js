@@ -1,12 +1,11 @@
 import './App.css';
-import HeatSelect from '/Users/bogdanblazhkevych/Desktop/new-violations-frontend/src/Components/HeatSelect/HeatSelect.js';
+import HeatSelect from './Components/HeatSelect/HeatSelect';
 import Navbar from './Components/Navbar/Navbar';
 import Searchbar from './Components/SearchBar/Searchbar';
 import {useState, useEffect} from 'react'
-import DisplayData from '/Users/bogdanblazhkevych/Desktop/new-violations-frontend/src/Components/DisplayData/DisplayData.js';
+import DisplayData from './Components/DisplayData/DisplayData.js';
 
 function App() {
-
   const [currentDisplay, setCurrentDisplay] = useState('topten');
   const [currentSearchQuerry, setCurrentSearchQuerry] = useState('');
   const [currentHeat, setCurrentHeat] = useState('total_fines');
