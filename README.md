@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+<h1 align=center>NYCLeaderboards <br /> Frontend <br /> V2</h1>
+<div align=center>
+Version control for my upcoming website. This works with a backend using NodeJS and express, as well as a MySQL database. If you'd like to see a preview of how the frontend will look, instructions with sample data are provided here. Please open an issue for ux/ui suggestions or a pull request if you'd like to make changes directly.
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Installation
 
-## Available Scripts
+Clone this repository
 
-In the project directory, you can run:
+```bash
+  $ git clone https://github.com/bogdanblazhkevych/NYCLeaderboards-frontend-v2
+```
 
-### `npm start`
+Start the react app (make sure you cd into the directory you cloned this repo)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+  $ npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Congrats, run the app and check out the UI of the website as i develop it.
 
-### `npm test`
+---------------------
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+If you have your own database and backend you'd like to use with fetch, there are some further things you must do.
+Make sure you acess it through
+  
+```bash
+  <yourIP>:<yourPort>
+```
 
-### `npm run build`
+and not 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  localhost:<yourPort>
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Next you must replace the backendUrl value in src/Components/config.js
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+```javascript
+  export const config = {
+      backendUrl: "http://<yourIPv4>:<yourPort>"
+  }
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Finally, you must replace 3 state hooks to be empty arrays and not placeholder data found in the config.js file.
+<br />
+Change the state in the following files:
+<br /><br />
+- src/Components/TopTen/TopTen.js
+- src/Components/SearchData/Searchdata.js
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```javascript
+  const [topTen, setTopTen] = useState([]); // config.topTenPlaceHolder is where the [] is. replace it with the []
+  const [data, setData] = useState([]) // config.searchPlaceHolder is where the [] is. replace it with the []
+  const [violationCount, setViolationCount] = useState([]) // config.countPlaceHolder is where the [] is. replace it with the []
+```
 
-## Learn More
+Congrats, the fetch will now do something. You still have to set up your own backend and database. 
+<br />
+Schema is in config.js
+<br />
+Good Luck!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
