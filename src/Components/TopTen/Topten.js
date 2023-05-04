@@ -3,18 +3,23 @@ import toptencss from './toptencss.module.css'
 import DisplayAmount from '../displayamount.js';
 import {GiLaurelCrown} from 'react-icons/gi';
 import { config } from '../config.js';
+import Loading from '../Loading/Loading';
 
 export default function Topten({currentHeat}){
 
-    const [topTen, setTopTen] = useState(config.topTenPlaceHolder);
+    const [topTen, setTopTen] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
 
         async function getTopTenData() {
-            const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`);
-            const json = await response.json();
-            console.log(json);
-            setTopTen(json);
+            setLoading(true)
+            // const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`);
+            // const json = await response.json();
+            // setTopTen(json);
+            setTopTen(config.topTenPlaceHolder)
+            // uncomment ^^^ to keep developing, and remove the uncommented setTopTen
+            setLoading(false)
         }
 
         getTopTenData();
@@ -43,6 +48,14 @@ export default function Topten({currentHeat}){
 
         podium.style.setProperty("--heightmargin", heightmargin)
         //maybe use refs instead of document.getElementById?
+    }
+
+    if (loading) {
+        return (
+            <div className={toptencss.loadingwrapper}>
+                <Loading />
+            </div>
+        )
     }
 
     return (

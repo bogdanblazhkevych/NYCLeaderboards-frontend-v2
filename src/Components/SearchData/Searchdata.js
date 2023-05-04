@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import searchdatacss from '/Users/bogdanblazhkevych/Desktop/new-violations-frontend/src/Components/SearchData/searchdatacss.module.css'
 import PieChart from '../PieChart/PieChart'
 import { config } from '../config'
+import Loading from '../Loading/Loading'
 
 export default function Searchdata({currentHeat, currentQuerry}){
 
@@ -25,19 +26,24 @@ export default function Searchdata({currentHeat, currentQuerry}){
     const [data, setData] = useState(config.searchPlaceHolder)
     const [violationCount, setViolationCount] = useState(config.countPlaceHolder)
     const [totalFines, setTotalFines] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
+    const [noResults, setNoResults] = useState(false)
 
     useEffect(()=> { 
 
         async function getPlateData() {
-            fetch(`${config.backendUrl}/license-plate/${currentQuerry}/${currentHeat}`)
-            .then(response => response.json())
-            .then(data => {
-                setData(cleanData(data));
-                getCount(data);
-                console.log(data)
-            })
-            .catch(error => console.error(error))
+            setNoResults(false)
+            setLoading(true)
+            const response = await fetch(`${config.backendUrl}/license-plate/${currentQuerry}/${currentHeat}`);
+            const json = await response.json();
+            if (json.length === 0) {
+                setNoResults(true);
+                setLoading(false);
+                return
+            }
+            setData(cleanData(json));
+            getCount(json);
+            setLoading(false);
         }
 
         async function getTotalFines() {
@@ -50,7 +56,6 @@ export default function Searchdata({currentHeat, currentQuerry}){
         }
 
         if(currentQuerry.length > 0){
-            setLoading(true);
             getPlateData();
             getTotalFines();
         }
@@ -91,31 +96,6 @@ export default function Searchdata({currentHeat, currentQuerry}){
     }
     
     function getCount(arr) {
-
-        // let countObject = {};
-        // let sortedObject = {};
-        // let sortedObjectKeys;
-
-        // arr.forEach((entry)=> {
-
-        //     if(Object.keys(countObject).includes(entry.violation)) {
-        //         countObject[entry.violation]++
-        //     }else if(entry.violation !== null) {
-        //         countObject[entry.violation] = 1
-        //     }
-
-        // })
-
-        // sortedObjectKeys = Object.keys(countObject).sort((a, b) => {
-        //     return countObject[b] - countObject[a]
-        // })
-
-        // for(let key in sortedObjectKeys){
-        //     sortedObject[sortedObjectKeys[key]] = countObject[sortedObjectKeys[key]]
-        // }
-        
-        // setViolationCount(sortedObject)
-
         let countObject = {};
 
         arr.forEach((entry) => {
@@ -130,8 +110,6 @@ export default function Searchdata({currentHeat, currentQuerry}){
             return b[1] - a[1]
         })
 
-        // let sortedObject = Object.fromEntries(sortedEntries)
-        // console.log(sortedEntries)
         setViolationCount(sortedEntries)
     }
 
@@ -179,8 +157,41 @@ export default function Searchdata({currentHeat, currentQuerry}){
         return percent
     }
 
-    if (data.length === 0){
-        return <>loading...</>
+    if (loading) {
+        return (
+            <div className={searchdatacss.loadingwrapper}>
+                <Loading />
+            </div>
+        )
+    }
+
+    if (noResults) {
+        return (
+            <div className={searchdatacss.noresultswrapper}>
+                <div>
+                    Oh No! The search came back empty. It could be for a few reasons:
+                </div>
+                <div className={searchdatacss.listwrapper}>
+                    <div>
+                        1. The plate you entered has no fines
+                    </div>
+                    <div>
+                        2. The plate you entered does not belong to this heat
+                    </div>
+                    <div>
+                        3. The plate you entered does not exist
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    if (!loading && data.length === 0) {
+        return (
+            <div className={searchdatacss.initialwrapper}>
+                Enter a license plate and select a heat
+            </div>
+        )
     }
 
     return(

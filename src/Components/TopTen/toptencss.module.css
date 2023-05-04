@@ -118,3 +118,9 @@
 .totalfinestd{
     text-align: right;
 }
+
+.loadingwrapper{
+    margin-top: 1rem;
+    width: 90vw;
+    max-width: 630px;
+}

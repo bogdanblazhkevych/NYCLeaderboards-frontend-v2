@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Searchbar from './Components/SearchBar/Searchbar';
 import {useState, useEffect} from 'react'
 import DisplayData from './Components/DisplayData/DisplayData.js';
+import Loading from './Components/Loading/Loading';
 
 function App() {
   const [currentDisplay, setCurrentDisplay] = useState('topten');
@@ -28,6 +29,7 @@ function App() {
       <Searchbar setCurrentSearchQuerry={setCurrentSearchQuerry} setCurrentDisplay={setCurrentDisplay}/>
       <HeatSelect setCurrentHeat={setCurrentHeat}/>
       <DisplayData currentDisplay={currentDisplay} currentHeat={currentHeat} currentSearchQuerry={currentSearchQuerry}/>
+      {/* <Loading /> */}
     </div>
   );
 }
