@@ -14,6 +14,7 @@ export default function Topten({currentHeat}){
 
         async function getTopTenData() {
             setLoading(true)
+            // comment out these lines when pushing to github
             // const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`);
             // const json = await response.json();
             // setTopTen(json);

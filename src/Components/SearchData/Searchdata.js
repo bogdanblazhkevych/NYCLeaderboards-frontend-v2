@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import searchdatacss from '/Users/bogdanblazhkevych/Desktop/new-violations-frontend/src/Components/SearchData/searchdatacss.module.css'
+import searchdatacss from './searchdatacss.module.css'
 import PieChart from '../PieChart/PieChart'
 import { config } from '../config'
 import Loading from '../Loading/Loading'
@@ -56,8 +56,8 @@ export default function Searchdata({currentHeat, currentQuerry}){
         }
 
         if(currentQuerry.length > 0){
-            getPlateData();
-            getTotalFines();
+            // getPlateData();
+            // getTotalFines();
         }
 
     }, [currentQuerry, currentHeat])
