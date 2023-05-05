@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/NYCLeaderboards-frontend-v2/static/css/main.219974c8.css",
+    "main.js": "/NYCLeaderboards-frontend-v2/static/js/main.833ee96d.js",
+    "static/media/Oswald-VariableFont_wght.ttf": "/NYCLeaderboards-frontend-v2/static/media/Oswald-VariableFont_wght.46d7853f0185f6bf0c93.ttf",
+    "static/media/LicensePlate-j9eO.ttf": "/NYCLeaderboards-frontend-v2/static/media/LicensePlate-j9eO.d65ea51fadc2805c34b6.ttf",
+    "index.html": "/NYCLeaderboards-frontend-v2/index.html",
+    "main.219974c8.css.map": "/NYCLeaderboards-frontend-v2/static/css/main.219974c8.css.map",
+    "main.833ee96d.js.map": "/NYCLeaderboards-frontend-v2/static/js/main.833ee96d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.219974c8.css",
+    "static/js/main.833ee96d.js"
+  ]
+}
