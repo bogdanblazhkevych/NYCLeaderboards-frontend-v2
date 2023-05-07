@@ -1,32 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.91430229.css",
-    "main.js": "/static/js/main.0312c0d3.js",
-    "static/media/freeinquotes.com_.png": "/static/media/freeinquotes.com_.fc70b0cf54920761a273.png",
-    "static/media/glasses-16.jpg": "/static/media/glasses-16.b447fed4cce91e7bebb1.jpg",
-    "static/media/glasses-3.jpg": "/static/media/glasses-3.ccc776d6b343f9d5172b.jpg",
-    "static/media/glasses-2.jpg": "/static/media/glasses-2.bcbe77a78924b7fd48b3.jpg",
-    "static/media/glasses-15.jpg": "/static/media/glasses-15.28afc8b8eb64589d53d2.jpg",
-    "static/media/glasses-4.jpg": "/static/media/glasses-4.dde8557d9b006745c75e.jpg",
-    "static/media/glasses-1.jpg": "/static/media/glasses-1.bb3bb373438735848927.jpg",
-    "static/media/glasses-7.jpg": "/static/media/glasses-7.616bd6fb9d573fd7a177.jpg",
-    "static/media/glasses-11.jpg": "/static/media/glasses-11.64015a793050d8ff971f.jpg",
-    "static/media/glasses-12.jpg": "/static/media/glasses-12.9458a6fb33c65f8c7f2d.jpg",
-    "static/media/glasses-8.jpg": "/static/media/glasses-8.68b33376de6062c4a2eb.jpg",
-    "static/media/glasses-14.jpg": "/static/media/glasses-14.2505448ca5fb7cf83369.jpg",
-    "static/media/glasses-10.jpg": "/static/media/glasses-10.a5a0b1cf8090316ba5aa.jpg",
-    "static/media/glasses-6.jpg": "/static/media/glasses-6.b8ffa203e13adaea8b91.jpg",
-    "static/media/glasses-5.jpg": "/static/media/glasses-5.93c426568eaa79b6e78f.jpg",
-    "static/media/glasses-13.jpg": "/static/media/glasses-13.06f400cece37eefbeaa0.jpg",
-    "static/media/glasses-9.jpg": "/static/media/glasses-9.67a1d0f6b15aa938e906.jpg",
-    "static/media/codepen.io_lilbogdaddy_full_ZERyORG.png": "/static/media/codepen.io_lilbogdaddy_full_ZERyORG.3ae6190be2d759fea0a3.png",
-    "static/media/resume.pdf": "/static/media/resume.8010c49bcdd6947a90be.pdf",
+    "main.css": "/static/css/main.1c822290.css",
+    "main.js": "/static/js/main.22a11471.js",
+    "static/media/Oswald-VariableFont_wght.ttf": "/static/media/Oswald-VariableFont_wght.46d7853f0185f6bf0c93.ttf",
+    "static/media/LicensePlate-j9eO.ttf": "/static/media/LicensePlate-j9eO.d65ea51fadc2805c34b6.ttf",
     "index.html": "/index.html",
-    "main.91430229.css.map": "/static/css/main.91430229.css.map",
-    "main.0312c0d3.js.map": "/static/js/main.0312c0d3.js.map"
+    "main.1c822290.css.map": "/static/css/main.1c822290.css.map",
+    "main.22a11471.js.map": "/static/js/main.22a11471.js.map"
   },
   "entrypoints": [
-    "static/css/main.91430229.css",
-    "static/js/main.0312c0d3.js"
+    "static/css/main.1c822290.css",
+    "static/js/main.22a11471.js"
   ]
 }
