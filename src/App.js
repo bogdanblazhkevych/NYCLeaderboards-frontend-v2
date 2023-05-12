@@ -5,6 +5,7 @@ import Searchbar from './Components/SearchBar/Searchbar';
 import {useState, useEffect} from 'react'
 import DisplayData from './Components/DisplayData/DisplayData.js';
 import Loading from './Components/Loading/Loading';
+import Soon from './Components/Soon/Soon';
 
 function App() {
   const [currentDisplay, setCurrentDisplay] = useState('topten');
@@ -25,11 +26,12 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar setCurrentDisplay={setCurrentDisplay} currentDisplay={currentDisplay}/>
+      {/* <Navbar setCurrentDisplay={setCurrentDisplay} currentDisplay={currentDisplay}/>
       <Searchbar setCurrentSearchQuerry={setCurrentSearchQuerry} setCurrentDisplay={setCurrentDisplay}/>
       <HeatSelect setCurrentHeat={setCurrentHeat}/>
-      <DisplayData currentDisplay={currentDisplay} currentHeat={currentHeat} currentSearchQuerry={currentSearchQuerry}/>
+      <DisplayData currentDisplay={currentDisplay} currentHeat={currentHeat} currentSearchQuerry={currentSearchQuerry}/> */}
       {/* <Loading /> */}
+      <Soon />
     </div>
   );
 }

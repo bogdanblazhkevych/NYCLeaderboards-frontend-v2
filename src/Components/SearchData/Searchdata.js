@@ -75,13 +75,15 @@ export default function Searchdata({currentHeat, currentQuerry}){
         const cleanData = data.map((instance) => {
             const message = {
                 "FAIL TO DSPLY MUNI METER RECPT": "NO METER RECPT",
-                "NO STANDING-DAY/TIME LIMITS": "NO STANDING",
+                "NO STANDING-DAY/TIME LIMITS": "NO STANDING DTL",
                 "NO STANDING-COMM METER ZONE": "NO STANDING COM ZONE",
                 "INSP. STICKER-EXPIRED/MISSING": "NO INSPECTION",
                 "INSP STICKER-MUTILATED/C'FEIT": "FAKE/OBSTRUCTED INSP",
-                "NO PARKING-DAY/TIME LIMITS": "STREET CLEANING",
+                "NO PARKING-DAY/TIME LIMITS": "NO PARKING DTL",
                 "PHTO SCHOOL ZN SPEED VIOLATION": "SCHOOL ZONE SPEEDING",
-                "FAILURE TO STOP AT RED LIGHT": "RED LIGHT CAMERA"
+                "FAILURE TO STOP AT RED LIGHT": "RED LIGHT CAMERA",
+                "NO PARKING-STREET CLEANING": "STREET CLEANING",
+                "REG. STICKER-EXPIRED/MISSING": "NO REGISTRATION"
             }[instance.violation];
 
             if (message) {
@@ -109,7 +111,7 @@ export default function Searchdata({currentHeat, currentQuerry}){
         const sortedEntries = Object.entries(countObject).sort((a, b) => {
             return b[1] - a[1]
         })
-
+        
         setViolationCount(sortedEntries)
     }
 
@@ -222,15 +224,20 @@ export default function Searchdata({currentHeat, currentQuerry}){
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((violation)=>(
-                                <tr className={searchdatacss.searchtr} key={violation.summons_number}>
-                                    <td className={searchdatacss.offensetd}>{splitString(violation.violation)}</td>
-                                    <td className={searchdatacss.datetd}>{makeDate(violation.issue_date)}</td>
-                                    {/* <td className={searchdatacss.finetd}><DisplayAmount inputNumber={violation.fine_amount}/></td> */}
-                                    <td className={searchdatacss.finetd}>{addCurrencyFormat(violation.fine_amount)}</td>
-                                    
-                                </tr>
-                            ))}
+                            {data.map((violation) => {
+                                if (violation.violation === null) {
+                                    return
+                                }
+
+                                return (
+                                    <tr className={searchdatacss.searchtr} key={violation.summons_number}>
+                                        <td className={searchdatacss.offensetd}>{violation.violation}</td>
+                                        <td className={searchdatacss.datetd}>{makeDate(violation.issue_date)}</td>
+                                        {/* <td className={searchdatacss.finetd}><DisplayAmount inputNumber={violation.fine_amount}/></td> */}
+                                        <td className={searchdatacss.finetd}>{addCurrencyFormat(violation.fine_amount)}</td>
+                                    </tr>
+                                )
+                            })}
 
                         </tbody>
 
@@ -255,12 +262,14 @@ export default function Searchdata({currentHeat, currentQuerry}){
 
                             <tbody>
 
-                                {violationCount.map((key, index) => (
-                                    <tr className={searchdatacss.tallytr} key={index}>
-                                        <td className={searchdatacss.violationtallytd}>{key[0]}<div style={{height: "0.8rem", aspectRatio: "1/1", backgroundColor: colors[index % colors.length], display: "inline-block", borderRadius: "50%", marginLeft: "0.5rem"}}></div></td>
-                                        <td className={searchdatacss.counttd}>{key[1]}</td>
-                                    </tr>
-                                ))}
+                                {violationCount.map((key, index) => {
+                                    return (
+                                        <tr className={searchdatacss.tallytr} key={index}>
+                                            <td className={searchdatacss.violationtallytd}>{key[0]}<div style={{height: "0.8rem", aspectRatio: "1/1", backgroundColor: colors[index % colors.length], display: "inline-block", borderRadius: "50%", marginLeft: "0.5rem"}}></div></td>
+                                            <td className={searchdatacss.counttd}>{key[1]}</td>
+                                        </tr>
+                                    )
+                                })}
 
                             </tbody>
 
