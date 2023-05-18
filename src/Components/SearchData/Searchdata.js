@@ -23,8 +23,8 @@ export default function Searchdata({currentHeat, currentQuerry}){
 
     const display = useRef(null)
 
-    const [data, setData] = useState(config.searchPlaceHolder)
-    const [violationCount, setViolationCount] = useState(config.countPlaceHolder)
+    const [data, setData] = useState([])
+    const [violationCount, setViolationCount] = useState([])
     const [totalFines, setTotalFines] = useState([])
     const [loading, setLoading] = useState(false)
     const [noResults, setNoResults] = useState(false)
@@ -46,17 +46,17 @@ export default function Searchdata({currentHeat, currentQuerry}){
             setLoading(false);
         }
 
-        async function getTotalFines() {
-            fetch(`${config.backendUrl}/license-plate/${currentHeat}`)
-            .then(response => response.json())
-            .then(totalfinesdata => {
-                setTotalFines(totalfinesdata);
-            })
-            .catch(error => console.error(error))
-        }
+        // async function getTotalFines() {
+        //     fetch(`${config.backendUrl}/license-plate/${currentHeat}`)
+        //     .then(response => response.json())
+        //     .then(totalfinesdata => {
+        //         setTotalFines(totalfinesdata);
+        //     })
+        //     .catch(error => console.error(error))
+        // }
 
         if(currentQuerry.length > 0){
-            // getPlateData();
+            getPlateData();
             // getTotalFines();
         }
 
