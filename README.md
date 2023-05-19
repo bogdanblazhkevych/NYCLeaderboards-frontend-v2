@@ -1,4 +1,9 @@
 <h1 align=center>NYCLeaderboards <br /> Frontend <br /> V2</h1>
+
+<h1>05/19/2023</h1>
+<ul>
+    <li>updated SSL and fixed urls</li>
+</ul>
 <h1>05/18/2023</h1>
 <ul>
   <li>setup AWS rds and beanstalk ec2 to work with eachother</li>

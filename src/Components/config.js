@@ -1,5 +1,5 @@
 export const config = {
-    backendUrl: "no", //delete when uploading to git. to tesl loacly, replace with http://<your ip>:<your server port>
+    backendUrl: "https://backend.eba-dm3iyrya.us-east-2.elasticbeanstalk.com", //delete when uploading to git. to tesl loacly, replace with http://<your ip>:<your server port>
     topTenPlaceHolder : [
         {
             "plate": "BVH5939",
