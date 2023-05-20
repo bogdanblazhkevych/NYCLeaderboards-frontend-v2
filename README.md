@@ -2,7 +2,9 @@
 
 <h1>05/19/2023</h1>
 <ul>
-    <li>updated SSL and fixed urls</li>
+    <li>updated API endpoints</li>
+    - Setup SSL Certificate for the domain
+    - modified CNAME records for ssl and API subdomain
 </ul>
 <h1>05/18/2023</h1>
 <ul>
