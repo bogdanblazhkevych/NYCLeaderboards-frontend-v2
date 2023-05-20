@@ -4,6 +4,7 @@
 <ul>
     <li>updated API endpoints</li>
     - Setup SSL Certificate for the domain
+    <br>
     - modified CNAME records for ssl and API subdomain
 </ul>
 <h1>05/18/2023</h1>
