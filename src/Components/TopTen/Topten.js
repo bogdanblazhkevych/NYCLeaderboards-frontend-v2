@@ -8,18 +8,42 @@ import Loading from '../Loading/Loading';
 export default function Topten({currentHeat}){
 
     const [topTen, setTopTen] = useState([]);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+    const [allPlatesCache, setAllPlatesCache] = useState([])
+    const [passengerPlatesCache, setPassengerPlatesCache] = useState([])
+    const [vanityPlatesCache, setVanityPlatesCache] = useState([])
+    const [tlcPlatesCache, setTlcPlatesCache] = useState([])
 
     useEffect(() => {
 
+        const heatCache = {
+            "total_fines_test": allPlatesCache,
+            "total_fines": passengerPlatesCache,
+            "total_fines_srf": vanityPlatesCache,
+            "total_fiens_omt": tlcPlatesCache
+        }
+
+        const setHeatCache = {
+            "total_fines_test": setAllPlatesCache,
+            "total_fines": setPassengerPlatesCache,
+            "total_fines_srf": setVanityPlatesCache,
+            "total_fiens_omt": setTlcPlatesCache
+        }
+
         async function getTopTenData() {
+
+            if (heatCache[currentHeat].length !== 0) {
+                console.log("inside if:    ", heatCache[currentHeat])
+                setTopTen(heatCache[currentHeat])
+                return
+            }
+            console.log("still going....")
             setLoading(true)
-            // comment out these lines when pushing to github
             const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`);
             const json = await response.json();
             setTopTen(json);
-            // setTopTen(config.topTenPlaceHolder)
-            // uncomment ^^^ to keep developing, and remove the uncommented setTopTen
+            const setFuncton = setHeatCache[currentHeat]
+            setFuncton(json)
             setLoading(false)
         }
 

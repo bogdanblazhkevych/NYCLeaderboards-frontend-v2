@@ -23,14 +23,14 @@ export default function Password({setIsAuthenticated}){
         <div className={passwordcss.passwordwrapper}>
             <div className={passwordcss.password}>
 
-                {/* <div className={passwordcss.heading}> */}
+                <div className={passwordcss.heading}>
                     <div className={passwordcss.name}>
                         NYC Leaderboards
                     </div>
                     <div className={passwordcss.beta}>
-                        BETA
+                        BETA  1.0.2
                     </div>
-                {/* </div> */}
+                </div>
 
                 <input className={passwordcss.passinput} type="password" placeholder="PASSWORD" onKeyDown={handleKeyDown} onChange={handleChange} value={inputPass}>
                 </input>

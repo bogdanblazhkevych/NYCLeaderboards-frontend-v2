@@ -8,22 +8,33 @@
     /* border: 1px solid red; */
 }
 
-.loadingbox{
-    /* box-sizing: border-box;
-    border: 1px solid white; */
+.loadingbox {
     width: 10vmin;
     min-width: 50px;
     aspect-ratio: 1/1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-}
-
-.tick{
-    position: absolute;
-    height: 50%;
-    width: 5%;
-    border-radius: 10px;
-    transform-origin: center bottom;
-    background: linear-gradient(0deg, rgba(16,16,16,1) 40%, rgba(255,255,255,1) 40%);
-}
+    display: grid;
+    border-radius: 50%;
+    -webkit-mask:radial-gradient(farthest-side,#0000 40%,#000 41%);
+    background:
+      linear-gradient(0deg ,#1D223780 50%,#1D2237FF 0) center/4px 100%,
+      linear-gradient(90deg,#1D223740 50%,#1D2237BF 0) center/100% 4px;
+    background-repeat: no-repeat;
+    animation: s3 1s infinite steps(12);
+  }
+  .loadingbox::before,
+  .loadingbox::after {
+     content:"";
+     grid-area: 1/1;
+     border-radius: 50%;
+     background:inherit;
+     opacity: 0.915;
+     transform: rotate(30deg);
+  }
+  .loadingbox::after {
+     opacity: 0.83;
+     transform: rotate(60deg);
+  }
+  
+  @keyframes s3 {
+    100% {transform: rotate(1turn)}
+  }
