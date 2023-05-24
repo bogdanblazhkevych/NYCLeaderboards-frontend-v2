@@ -1,5 +1,16 @@
 <h1 align=center>NYCLeaderboards <br /> Frontend <br /> V2</h1>
 
+<h1>05/24/2023</h1>
+<ul>
+    <li>Changed state managment architecture</li>
+    - Each button on the website now has a dedicated state variable to manage its own data fetched from the server.
+    <br>
+    - fixed bug where responses from older requests would overwrite the data from more recent ones, leading to outdated data being displayed.
+    <br>
+    - implemented a caching system to reduce trips to the server to retrieve static-ish data
+    <br>
+    - data is not yet cached when displaying plate lookup then displaying leaderboards again. will fix.
+</ul>    
 <h1>05/19/2023</h1>
 <ul>
     <li>updated API endpoints</li>

@@ -1,9 +1,13 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useRef} from 'react'
 import toptencss from './toptencss.module.css'
 import DisplayAmount from '../displayamount.js';
 import {GiLaurelCrown} from 'react-icons/gi';
 import { config } from '../config.js';
 import Loading from '../Loading/Loading';
+
+// instead of timing it correctly with fetch requests, have the Object array mapped
+// for display be chosen by heat. If heat is x, map from x object array, instead of
+// having one object array and setting it with fetch requests
 
 export default function Topten({currentHeat}){
 
@@ -13,38 +17,61 @@ export default function Topten({currentHeat}){
     const [passengerPlatesCache, setPassengerPlatesCache] = useState([])
     const [vanityPlatesCache, setVanityPlatesCache] = useState([])
     const [tlcPlatesCache, setTlcPlatesCache] = useState([])
+    const fetchIdentificaton = useRef(0)
 
+    const heatCache = {
+        "total_fines_test": allPlatesCache,
+        "total_fines": passengerPlatesCache,
+        "total_fines_srf": vanityPlatesCache,
+        "total_fines_omt": tlcPlatesCache
+    }
+
+    const setHeatCache = {
+        "total_fines_test": setAllPlatesCache,
+        "total_fines": setPassengerPlatesCache,
+        "total_fines_srf": setVanityPlatesCache,
+        "total_fines_omt": setTlcPlatesCache
+    }
     useEffect(() => {
 
-        const heatCache = {
-            "total_fines_test": allPlatesCache,
-            "total_fines": passengerPlatesCache,
-            "total_fines_srf": vanityPlatesCache,
-            "total_fiens_omt": tlcPlatesCache
-        }
 
-        const setHeatCache = {
-            "total_fines_test": setAllPlatesCache,
-            "total_fines": setPassengerPlatesCache,
-            "total_fines_srf": setVanityPlatesCache,
-            "total_fiens_omt": setTlcPlatesCache
-        }
+        // async function getTopTenData() {
+
+        //     const localFetchIdentification = fetchIdentificaton.current++
+
+        //     setTopTen([])
+
+        //     if (heatCache[currentHeat].length !== 0) {
+        //         setLoading(true)
+        //         setTopTen(heatCache[currentHeat])
+        //         setLoading(false)
+        //         return
+        //     }
+
+        //     setLoading(true)
+        //     const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`);
+        //     const json = await response.json();
+    
+        //     setTopTen(json);
+
+        //     // const setFuncton = setHeatCache[currentHeat]
+        //     // setFuncton(json)
+        //     setHeatCache[currentHeat](json)
+        //     setLoading(false)
+            
+        // }
 
         async function getTopTenData() {
 
-            if (heatCache[currentHeat].length !== 0) {
-                console.log("inside if:    ", heatCache[currentHeat])
-                setTopTen(heatCache[currentHeat])
+            if (heatCache[currentHeat].length > 0) {
                 return
             }
-            console.log("still going....")
-            setLoading(true)
-            const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`);
+
+            const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`)
             const json = await response.json();
-            setTopTen(json);
-            const setFuncton = setHeatCache[currentHeat]
-            setFuncton(json)
-            setLoading(false)
+            setHeatCache[currentHeat](json)
+            
+
         }
 
         getTopTenData();
@@ -52,13 +79,13 @@ export default function Topten({currentHeat}){
     }, [currentHeat])
 
     useEffect(()=> {
-        if(topTen.length !== 0){
+        if(heatCache[currentHeat].length !== 0){
             setCssBasedOnBigPlateWidth();
         }
-    }, [topTen])
+    }, [heatCache[currentHeat]])
 
     function setCssBasedOnBigPlateWidth() {
-
+        console.log("css styling function called")
         for(let i = 1; i <= 3; i++) {
             const element = document.getElementById("rank" + i);
 
@@ -75,7 +102,7 @@ export default function Topten({currentHeat}){
         //maybe use refs instead of document.getElementById?
     }
 
-    if (loading) {
+    if (heatCache[currentHeat].length === 0) {
         return (
             <div className={toptencss.loadingwrapper}>
                 <Loading />
@@ -90,7 +117,7 @@ export default function Topten({currentHeat}){
 
                 <div className={toptencss.podium} id="podium">
 
-                    {topTen.slice(0, 3).map((element, index)=>(
+                    {heatCache[currentHeat].slice(0, 3).map((element, index)=>(
                         <div id={"rank" + (index + 1)} className={toptencss.platecover}>
 
                             {index === 0 && <div className={toptencss.crown}><GiLaurelCrown /></div>}
@@ -115,7 +142,7 @@ export default function Topten({currentHeat}){
                             </tr>
                         </thead>
                         <tbody className={toptencss.toptentbody}>
-                            {topTen.map((violation, index)=>(
+                            {heatCache[currentHeat].map((violation, index)=>(
                                 <tr key={violation.plate}>
                                     <td className={toptencss.ranktd}><div id={"tablerank" + (index + 1)}>{index + 1}</div></td>
                                     <td className={toptencss.platetd}>{violation.plate}</td>
