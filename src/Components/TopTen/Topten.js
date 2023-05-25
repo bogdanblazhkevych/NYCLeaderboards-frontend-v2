@@ -5,10 +5,6 @@ import {GiLaurelCrown} from 'react-icons/gi';
 import { config } from '../config.js';
 import Loading from '../Loading/Loading';
 
-// instead of timing it correctly with fetch requests, have the Object array mapped
-// for display be chosen by heat. If heat is x, map from x object array, instead of
-// having one object array and setting it with fetch requests
-
 export default function Topten({currentHeat}){
 
     const [topTen, setTopTen] = useState([]);
@@ -34,35 +30,7 @@ export default function Topten({currentHeat}){
     }
     useEffect(() => {
 
-
-        // async function getTopTenData() {
-
-        //     const localFetchIdentification = fetchIdentificaton.current++
-
-        //     setTopTen([])
-
-        //     if (heatCache[currentHeat].length !== 0) {
-        //         setLoading(true)
-        //         setTopTen(heatCache[currentHeat])
-        //         setLoading(false)
-        //         return
-        //     }
-
-        //     setLoading(true)
-        //     const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`);
-        //     const json = await response.json();
-    
-        //     setTopTen(json);
-
-        //     // const setFuncton = setHeatCache[currentHeat]
-        //     // setFuncton(json)
-        //     setHeatCache[currentHeat](json)
-        //     setLoading(false)
-            
-        // }
-
         async function getTopTenData() {
-
             if (heatCache[currentHeat].length > 0) {
                 return
             }
@@ -70,8 +38,6 @@ export default function Topten({currentHeat}){
             const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`)
             const json = await response.json();
             setHeatCache[currentHeat](json)
-            
-
         }
 
         getTopTenData();
