@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.58c72926.css",
-    "main.js": "/static/js/main.d6fdc368.js",
+    "main.js": "/static/js/main.a1e66a92.js",
     "static/media/Oswald-VariableFont_wght.ttf": "/static/media/Oswald-VariableFont_wght.46d7853f0185f6bf0c93.ttf",
     "static/media/LicensePlate-j9eO.ttf": "/static/media/LicensePlate-j9eO.d65ea51fadc2805c34b6.ttf",
     "index.html": "/index.html",
     "main.58c72926.css.map": "/static/css/main.58c72926.css.map",
-    "main.d6fdc368.js.map": "/static/js/main.d6fdc368.js.map"
+    "main.a1e66a92.js.map": "/static/js/main.a1e66a92.js.map"
   },
   "entrypoints": [
     "static/css/main.58c72926.css",
-    "static/js/main.d6fdc368.js"
+    "static/js/main.a1e66a92.js"
   ]
 }
