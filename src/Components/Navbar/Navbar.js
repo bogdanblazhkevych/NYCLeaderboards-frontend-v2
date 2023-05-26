@@ -1,7 +1,6 @@
 import React from "react";
 import navbarcss from "/Users/bogdanblazhkevych/Desktop/new-violations-frontend/src/Components/Navbar/Navbarcss.module.css";
-import { ImListNumbered } from 'react-icons/im'
-import { ImSearch } from 'react-icons/im'
+import { ImSearch, ImCamera, ImListNumbered } from 'react-icons/im'
 import { useEffect, useState } from 'react'
 
 export default function Navbar({ setCurrentDisplay, currentDisplay }) {
@@ -39,6 +38,10 @@ export default function Navbar({ setCurrentDisplay, currentDisplay }) {
 
                 <div className={navbarcss.searchbutton} id="search" onClick={changeDisplay} style={changeStyle('search')}>
                     <ImSearch />
+                </div>
+
+                <div className={navbarcss.camerabutton} id="camera" onClick={changeDisplay} style={changeStyle('camera')}>
+                    <ImCamera />
                 </div>
 
             </div>
