@@ -21,17 +21,17 @@ function App() {
   return (
     <div className="App">
 
-      {isAuthenticated ? <>
+      {/* {isAuthenticated ? <>
         <Navbar setCurrentDisplay={setCurrentDisplay} currentDisplay={currentDisplay}/>
         <Searchbar setCurrentSearchQuerry={setCurrentSearchQuerry} setCurrentDisplay={setCurrentDisplay}/>
         <HeatSelect setCurrentHeat={setCurrentHeat}/>
         <DisplayData currentDisplay={currentDisplay} currentHeat={currentHeat} currentSearchQuerry={currentSearchQuerry}/>
-      </> : <Password setIsAuthenticated={setIsAuthenticated}/>}
+      </> : <Password setIsAuthenticated={setIsAuthenticated}/>} */}
 
-      {/* <Navbar setCurrentDisplay={setCurrentDisplay} currentDisplay={currentDisplay}/>
+      <Navbar setCurrentDisplay={setCurrentDisplay} currentDisplay={currentDisplay}/>
       <Searchbar setCurrentSearchQuerry={setCurrentSearchQuerry} setCurrentDisplay={setCurrentDisplay}/>
       <HeatSelect setCurrentHeat={setCurrentHeat}/>
-      <DisplayData currentDisplay={currentDisplay} currentHeat={currentHeat} currentSearchQuerry={currentSearchQuerry}/> */}
+      <DisplayData currentDisplay={currentDisplay} currentHeat={currentHeat} currentSearchQuerry={currentSearchQuerry}/>
 
       {/* <Password /> */}
       {/* <Loading /> */}

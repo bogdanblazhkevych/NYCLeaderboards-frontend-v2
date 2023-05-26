@@ -5,15 +5,11 @@ import {GiLaurelCrown} from 'react-icons/gi';
 import { config } from '../config.js';
 import Loading from '../Loading/Loading';
 
-export default function Topten({currentHeat}){
-
-    const [topTen, setTopTen] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [allPlatesCache, setAllPlatesCache] = useState([])
-    const [passengerPlatesCache, setPassengerPlatesCache] = useState([])
-    const [vanityPlatesCache, setVanityPlatesCache] = useState([])
-    const [tlcPlatesCache, setTlcPlatesCache] = useState([])
-    const fetchIdentificaton = useRef(0)
+export default function Topten({currentHeat, allPlatesCache, setAllPlatesCache, passengerPlatesCache, setPassengerPlatesCache, vanityPlatesCache, setVanityPlatesCache, tlcPlatesCache, setTlcPlatesCache}){
+    // const [allPlatesCache, setAllPlatesCache] = useState([])
+    // const [passengerPlatesCache, setPassengerPlatesCache] = useState([])
+    // const [vanityPlatesCache, setVanityPlatesCache] = useState([])
+    // const [tlcPlatesCache, setTlcPlatesCache] = useState([])
 
     const heatCache = {
         "total_fines_test": allPlatesCache,
