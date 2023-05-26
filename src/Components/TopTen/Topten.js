@@ -51,7 +51,6 @@ export default function Topten({currentHeat}){
     }, [heatCache[currentHeat]])
 
     function setCssBasedOnBigPlateWidth() {
-        console.log("css styling function called")
         for(let i = 1; i <= 3; i++) {
             const element = document.getElementById("rank" + i);
 
