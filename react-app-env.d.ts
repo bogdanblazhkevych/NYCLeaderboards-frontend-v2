@@ -17,3 +17,8 @@ declare module './Components/Navbar/Navbar' {
     const Navbar: any;
     export default Navbar;
 }
+
+// declare module './Components/SearchBar/Searchbar' {
+//     const Searchbar: any;
+//     export default Searchbar;
+// }

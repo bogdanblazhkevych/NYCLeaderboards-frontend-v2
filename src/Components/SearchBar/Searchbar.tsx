@@ -1,18 +1,25 @@
 import React, {useState} from "react";
-import searchbarcss from '/Users/bogdanblazhkevych/Desktop/new-violations-frontend/src/Components/SearchBar/Searchbarcss.module.css';
+import searchbarcss from './Searchbarcss.module.css';
 import { ImSearch } from 'react-icons/im'
 
-export default function Searchbar({setCurrentSearchQuerry, setCurrentDisplay}){
+interface SearchbarProps {
+    setCurrentSearchQuerry: (currentSearchQuerry: string) => void,
+    setCurrentDisplay: (currentDisplay: string) => void
+    
+}
 
-    const [currentSearch, setCurrentSearch] = useState('')
+export default function Searchbar(props: SearchbarProps){
+    const { setCurrentSearchQuerry, setCurrentDisplay } = props;
 
-    function setLocalSearchState(e) {
+    const [currentSearch, setCurrentSearch] = useState<string>('')
+
+    function setLocalSearchState(e: React.ChangeEvent<HTMLInputElement>) {
         setCurrentSearch(e.target.value)
     }
 
-    function handleKeyDown(e) {
+    function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
         if (e.key === 'Enter') {
-            setCurrentDisplay('search')
+            setCurrentDisplay('search')     
             setCurrentSearchQuerry(currentSearch)
         }
     }
