@@ -1,19 +1,23 @@
 import React from "react";
-import heatselectcss from '/Users/bogdanblazhkevych/Desktop/new-violations-frontend/src/Components/HeatSelect/heatselectcss.module.css'
+import heatselectcss from './heatselectcss.module.css'
 import { useState } from 'react'
 
-export default function HeatSelect({setCurrentHeat}){
+interface HeatSelectProps {
+    setCurrentHeat: (heat: string) => void;
+}
 
-    const [styledId, setStyledId] = useState("total_fines")
+export default function HeatSelect(props: HeatSelectProps){
+    const { setCurrentHeat } = props;
+
+    const [styledId, setStyledId] = useState<string>("total_fines")
     
-    function handleClick(e){
+    function handleClick(e: React.MouseEvent<HTMLDivElement>){
         setCurrentHeat(e.currentTarget.id)
         setStyledId(e.currentTarget.id)
     }
 
-    function getCurrentStyle(divId){
-        if(divId === styledId){
-            // return {color: '#101010', backgroundColor: '#F5F5F7', fontWeight: 'bold'}
+    function getCurrentStyle(divId: string){
+        if (divId === styledId) {
             return {color: 'white', backgroundColor: 'rgb(39,45,65)', fontWeight: 'bold'}
         }
 

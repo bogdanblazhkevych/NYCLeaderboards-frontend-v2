@@ -4,34 +4,32 @@ import Navbar from './Components/Navbar/Navbar';
 import Searchbar from './Components/SearchBar/Searchbar';
 import {useState, useEffect} from 'react'
 import DisplayData from './Components/DisplayData/DisplayData.js';
-import Loading from './Components/Loading/Loading';
-import Soon from './Components/Soon/Soon';
 import Password from './Components/Password/Password';
 
 function App() {
   const [currentDisplay, setCurrentDisplay] = useState('topten');
   const [currentSearchQuerry, setCurrentSearchQuerry] = useState('');
-  const [currentHeat, setCurrentHeat] = useState('total_fines');
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("isAuthenticated") === true)
+  const [currentHeat, setCurrentHeat] = useState<string>('total_fines');
+  // const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("isAuthenticated") === true)
 
-  useEffect(()=>{
-    localStorage.setItem("isAuthenticated", isAuthenticated)
-  }, [])
+  // useEffect(()=>{
+  //   localStorage.setItem("isAuthenticated", isAuthenticated)
+  // }, [])
 
   return (
     <div className="App">
 
-      {isAuthenticated ? <>
+      {/* {isAuthenticated ? <>
         <Navbar setCurrentDisplay={setCurrentDisplay} currentDisplay={currentDisplay}/>
         <Searchbar setCurrentSearchQuerry={setCurrentSearchQuerry} setCurrentDisplay={setCurrentDisplay}/>
         <HeatSelect setCurrentHeat={setCurrentHeat}/>
         <DisplayData currentDisplay={currentDisplay} currentHeat={currentHeat} currentSearchQuerry={currentSearchQuerry}/>
-      </> : <Password setIsAuthenticated={setIsAuthenticated}/>}
+      </> : <Password setIsAuthenticated={setIsAuthenticated}/>} */}
 
-      {/* <Navbar setCurrentDisplay={setCurrentDisplay} currentDisplay={currentDisplay}/>
+      <Navbar setCurrentDisplay={setCurrentDisplay} currentDisplay={currentDisplay}/>
       <Searchbar setCurrentSearchQuerry={setCurrentSearchQuerry} setCurrentDisplay={setCurrentDisplay}/>
       <HeatSelect setCurrentHeat={setCurrentHeat}/>
-      <DisplayData currentDisplay={currentDisplay} currentHeat={currentHeat} currentSearchQuerry={currentSearchQuerry}/> */}
+      <DisplayData currentDisplay={currentDisplay} currentHeat={currentHeat} currentSearchQuerry={currentSearchQuerry}/>
 
       {/* <Password /> */}
       {/* <Loading /> */}
