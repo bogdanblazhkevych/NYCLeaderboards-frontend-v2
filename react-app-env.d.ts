@@ -12,3 +12,8 @@ declare module './Components/HeatSelect/HeatSelect' {
     const HeatSelect: any;
     export default HeatSelect;
 }
+
+declare module './Components/Navbar/Navbar' {
+    const Navbar: any;
+    export default Navbar;
+}

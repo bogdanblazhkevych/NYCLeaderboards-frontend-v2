@@ -1,22 +1,28 @@
 import React from "react";
-import navbarcss from "/Users/bogdanblazhkevych/Desktop/new-violations-frontend/src/Components/Navbar/Navbarcss.module.css";
+import navbarcss from "./Navbarcss.module.css";
 import { ImSearch, ImCamera, ImListNumbered } from 'react-icons/im'
 import { useEffect, useState } from 'react'
 
-export default function Navbar({ setCurrentDisplay, currentDisplay }) {
-    const [currentSelection, setCurrentSelection] = useState("topten")
+interface NavbarProps {
+    setCurrentDisplay: (currentDisplay: string) => void,
+    currentDisplay: string
+}
+
+export default function Navbar(props: NavbarProps) {
+    const { setCurrentDisplay, currentDisplay } = props;
+    const [currentSelection, setCurrentSelection] = useState<string>("topten")
 
     useEffect(()=> {
         setCurrentSelection(currentDisplay)
     }, [currentDisplay])
 
-    function changeDisplay(e) {
+    function changeDisplay(e: React.MouseEvent<HTMLDivElement>) {
         let displayTarget = e.currentTarget.id;
         setCurrentDisplay(displayTarget)
         setCurrentSelection(e.currentTarget.id)
     }
 
-    function changeStyle(target) {
+    function changeStyle(target: string) {
         if(target === currentSelection){
             return {color: '#2D2D2D', backgroundColor: 'white'}
         }
