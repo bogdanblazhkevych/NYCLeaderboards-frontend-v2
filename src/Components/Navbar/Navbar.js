@@ -40,9 +40,9 @@ export default function Navbar({ setCurrentDisplay, currentDisplay }) {
                     <ImSearch />
                 </div>
 
-                <div className={navbarcss.camerabutton} id="camera" onClick={changeDisplay} style={changeStyle('camera')}>
+                {/* <div className={navbarcss.camerabutton} id="camera" onClick={changeDisplay} style={changeStyle('camera')}>
                     <ImCamera />
-                </div>
+                </div> */}
 
             </div>
 

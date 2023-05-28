@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 export default function HeatSelect({setCurrentHeat}){
 
-    const [styledId, setStyledId] = useState("total_fines_test")
+    const [styledId, setStyledId] = useState("total_fines")
     
     function handleClick(e){
         setCurrentHeat(e.currentTarget.id)
@@ -28,9 +28,6 @@ export default function HeatSelect({setCurrentHeat}){
 
                 <div className={heatselectcss.container}>
 
-                    <div className={heatselectcss.allheat} id="total_fines_test" onClick={handleClick} style={getCurrentStyle("total_fines_test")}>
-                        All Plates
-                    </div>
                     <div className={heatselectcss.passengerheat} id="total_fines" onClick={handleClick} style={getCurrentStyle("total_fines")}>
                         Passenger Plates
                     </div>
@@ -39,6 +36,9 @@ export default function HeatSelect({setCurrentHeat}){
                     </div>
                     <div className={heatselectcss.tlcheat} id="total_fines_omt" onClick={handleClick} style={getCurrentStyle("total_fines_omt")}>
                         TLC Plates
+                    </div>
+                    <div className={heatselectcss.allheat} id="total_fines_test" onClick={handleClick} style={getCurrentStyle("total_fines_test")}>
+                        All Plates
                     </div>
 
                 </div>

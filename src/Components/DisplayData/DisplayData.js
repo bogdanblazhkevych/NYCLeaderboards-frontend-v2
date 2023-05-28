@@ -17,9 +17,9 @@ export default function DisplayData({currentDisplay, currentHeat, currentSearchQ
         if (selectedDisplay === "search") {
             return <Searchdata currentHeat={selectedHeat} currentQuerry={selectedQuerry}/>
         }
-        if (selectedDisplay === "camera") {
-            return <Camera />
-        }
+        // if (selectedDisplay === "camera") {
+        //     return <Camera />
+        // }
 
     }
 
