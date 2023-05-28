@@ -56,7 +56,7 @@ export default function Password({setIsAuthenticated}){
                         NYC Leaderboards
                     </div>
                     <div className={passwordcss.beta}>
-                        BETA  1.0.31
+                        BETA  1.0.4
                     </div>
                 </div>
 
