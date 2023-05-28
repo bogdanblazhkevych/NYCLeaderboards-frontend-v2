@@ -1,5 +1,17 @@
 <h1 align=center>NYCLeaderboards <br /> Frontend <br /> V2</h1>
 
+<h1>05/28/2023</h1>
+<ul>
+    <li>Updated Queries</li>
+    - Rather than checking the licnese_type in real time, three new columns were created to place each license plate in heats.
+    <br>
+    - created composit indexes for total_fines column and is_heat column that brought the times down significantly
+    <br>
+    - created indexes for plate for both the violations and the total fines tables
+    <br>
+    - querries now return in under 0.4 ms compared to 5 - 8 seconds previously
+</ul> 
+
 <h1>05/24/2023</h1>
 <ul>
     <li>Changed state managment architecture</li>
