@@ -4,7 +4,41 @@ import PieChart from '../PieChart/PieChart'
 import { config } from '../config'
 import Loading from '../Loading/Loading'
 
-export default function Searchdata({currentHeat, currentQuerry}){
+interface SearchPlateData {
+    plate: string,
+    state: string,
+    issue_date: string,
+    fine_amount: number,
+    county: string,
+    violation: string,
+    summons_number: string,
+    total_fines: string,
+    sequence: number,
+    license_type: string,
+    violation_time: string,
+    judgment_entry_date: any,
+    penalty_amount: string,
+    interest_amount: string,
+    reduction_amount: string,
+    payment_amount: string,
+    amount_due: string,
+    precinct: string,
+    issuing_agency: string,
+    violation_status: any,
+    summons_image: string
+}
+
+interface SearchDataProps {
+    currentHeat: string,
+    currentQuerry: string
+}
+
+interface ViolationNamesObject {
+    [key: string]: string
+}
+
+export default function Searchdata(props: SearchDataProps){
+    const { currentHeat, currentQuerry } = props 
 
     const colors = [
         '#5f3a3a',
@@ -21,9 +55,10 @@ export default function Searchdata({currentHeat, currentQuerry}){
         "#573a5f"
     ]
 
+
     const display = useRef(null)
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState<SearchPlateData[]>([])
     const [violationCount, setViolationCount] = useState([])
     const [totalFines, setTotalFines] = useState([])
     const [loading, setLoading] = useState(false)
@@ -35,7 +70,7 @@ export default function Searchdata({currentHeat, currentQuerry}){
             setNoResults(false)
             setLoading(true)
             const response = await fetch(`${config.backendUrl}/license-plate/${currentQuerry}/${currentHeat}`);
-            const json = await response.json();
+            const json: SearchPlateData[] = await response.json();
             if (json.length === 0) {
                 setNoResults(true);
                 setLoading(false);
@@ -70,10 +105,11 @@ export default function Searchdata({currentHeat, currentQuerry}){
     //     }
     // }, [display.current])
 
-    function cleanData(data) {
+    function cleanData(data: SearchPlateData[]) {
         
-        const cleanData = data.map((instance) => {
-            const message = {
+        const cleanData = data.map((instance: SearchPlateData): SearchPlateData => {
+            
+            const violationNamesObject: ViolationNamesObject = {
                 "FAIL TO DSPLY MUNI METER RECPT": "NO METER RECPT",
                 "NO STANDING-DAY/TIME LIMITS": "NO STANDING DTL",
                 "NO STANDING-COMM METER ZONE": "NO STANDING COM ZONE",
@@ -84,7 +120,9 @@ export default function Searchdata({currentHeat, currentQuerry}){
                 "FAILURE TO STOP AT RED LIGHT": "RED LIGHT CAMERA",
                 "NO PARKING-STREET CLEANING": "STREET CLEANING",
                 "REG. STICKER-EXPIRED/MISSING": "NO REGISTRATION"
-            }[instance.violation];
+            };
+
+            const message: string = violationNamesObject[instance.violation]
 
             if (message) {
                 instance.violation = message;
@@ -97,10 +135,10 @@ export default function Searchdata({currentHeat, currentQuerry}){
 
     }
     
-    function getCount(arr) {
+    function getCount(arr: SearchPlateData[]) {
         let countObject = {};
 
-        arr.forEach((entry) => {
+        arr.forEach((entry: SearchPlateData) => {
             if (countObject[entry.violation]) {
                 countObject[entry.violation]++
             } else if (entry.violation !== null) {

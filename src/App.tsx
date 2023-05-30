@@ -3,7 +3,7 @@ import HeatSelect from './Components/HeatSelect/HeatSelect';
 import Navbar from './Components/Navbar/Navbar';
 import {useState, useEffect} from 'react'
 import DisplayData from './Components/DisplayData/DisplayData.js';
-import Password from './Components/Password/Password';
+// import Password from './Components/Password/Password';
 import Searchbar from './Components/SearchBar/Searchbar';
 
 function App() {
