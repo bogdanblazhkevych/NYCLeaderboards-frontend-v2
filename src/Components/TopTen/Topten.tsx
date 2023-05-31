@@ -1,24 +1,22 @@
 import {useEffect, useState, useRef} from 'react'
 import toptencss from './toptencss.module.css'
-import DisplayAmount from '../displayamount.js';
 import {GiLaurelCrown} from 'react-icons/gi';
-import { config } from '../config.js';
+import { config, TopTenDataPropsInterface, HeatCacheInterface, SetHeatCacheInterface } from '../config';
 import Loading from '../Loading/Loading';
+import DisplayAmount from '../displayamount';
 
-export default function Topten({currentHeat, allPlatesCache, setAllPlatesCache, passengerPlatesCache, setPassengerPlatesCache, vanityPlatesCache, setVanityPlatesCache, tlcPlatesCache, setTlcPlatesCache}){
-    // const [allPlatesCache, setAllPlatesCache] = useState([])
-    // const [passengerPlatesCache, setPassengerPlatesCache] = useState([])
-    // const [vanityPlatesCache, setVanityPlatesCache] = useState([])
-    // const [tlcPlatesCache, setTlcPlatesCache] = useState([])
+export default function Topten(props: TopTenDataPropsInterface){
 
-    const heatCache = {
+    const {currentHeat, allPlatesCache, setAllPlatesCache, passengerPlatesCache, setPassengerPlatesCache, vanityPlatesCache, setVanityPlatesCache, tlcPlatesCache, setTlcPlatesCache} = props
+
+    const heatCache: HeatCacheInterface = {
         "total_fines_test": allPlatesCache,
         "total_fines": passengerPlatesCache,
         "total_fines_srf": vanityPlatesCache,
         "total_fines_omt": tlcPlatesCache
     }
 
-    const setHeatCache = {
+    const setHeatCache: SetHeatCacheInterface = {
         "total_fines_test": setAllPlatesCache,
         "total_fines": setPassengerPlatesCache,
         "total_fines_srf": setVanityPlatesCache,
@@ -47,8 +45,14 @@ export default function Topten({currentHeat, allPlatesCache, setAllPlatesCache, 
     }, [heatCache[currentHeat]])
 
     function setCssBasedOnBigPlateWidth() {
+
+
         for(let i = 1; i <= 3; i++) {
             const element = document.getElementById("rank" + i);
+
+            if (element === null) {
+                return
+            }
 
             const elementfontsize = Math.ceil(element.clientWidth / 4) + "px";
 
@@ -56,6 +60,10 @@ export default function Topten({currentHeat, allPlatesCache, setAllPlatesCache, 
         }
 
         const podium = document.getElementById("podium");
+
+        if (podium === null) {
+            return
+        }
 
         const heightmargin = Math.ceil(podium.clientHeight / 3) + "px"
 
@@ -85,7 +93,7 @@ export default function Topten({currentHeat, allPlatesCache, setAllPlatesCache, 
 
                             {element.plate}
 
-                            {<div className={toptencss.moneyamount}><DisplayAmount inputNumber={element.total_fines}/></div>}
+                            {<div className={toptencss.moneyamount}><DisplayAmount inputNumber={Number(element.total_fines)}/></div>}
         
                         </div>
                     ))}
@@ -107,7 +115,7 @@ export default function Topten({currentHeat, allPlatesCache, setAllPlatesCache, 
                                 <tr key={violation.plate}>
                                     <td className={toptencss.ranktd}><div id={"tablerank" + (index + 1)}>{index + 1}</div></td>
                                     <td className={toptencss.platetd}>{violation.plate}</td>
-                                    <td className={toptencss.totalfinestd}><DisplayAmount inputNumber={violation.total_fines}/></td>
+                                    <td className={toptencss.totalfinestd}><DisplayAmount inputNumber={Number(violation.total_fines)}/></td>
                                 </tr>
                             ))}
                         </tbody>

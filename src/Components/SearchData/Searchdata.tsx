@@ -1,47 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
 import searchdatacss from './searchdatacss.module.css'
-import { config } from '../config'
+import { config, PlateDataInterface, SearchDataPropsInterface, ViolationNamesObjectInterface, CountObjectInterface } from '../config'
 import Loading from '../Loading/Loading'
 import PieChart from '../PieChart/PieChart'
 
-interface SearchPlateData {
-    plate: string,
-    state: string,
-    issue_date: string,
-    fine_amount: string,
-    county: string,
-    violation: string,
-    summons_number: string,
-    total_fines: string,
-    sequence: number,
-    license_type: string,
-    violation_time: string,
-    judgment_entry_date: any,
-    penalty_amount: string,
-    interest_amount: string,
-    reduction_amount: string,
-    payment_amount: string,
-    amount_due: string,
-    precinct: string,
-    issuing_agency: string,
-    violation_status: any,
-    summons_image: string
-}
-
-interface SearchDataProps {
-    currentHeat: string,
-    currentQuerry: string
-}
-
-interface ViolationNamesObject {
-    [key: string]: string
-}
-
-interface CountObject {
-    [key: string]: number
-}
-
-export default function Searchdata(props: SearchDataProps){
+export default function Searchdata(props: SearchDataPropsInterface){
     const { currentHeat, currentQuerry } = props 
 
     const colors = [
@@ -59,10 +22,9 @@ export default function Searchdata(props: SearchDataProps){
         "#573a5f"
     ]
 
-
     const display = useRef(null)
 
-    const [data, setData] = useState<SearchPlateData[]>([])
+    const [data, setData] = useState<PlateDataInterface[]>([])
     const [violationCount, setViolationCount] = useState<[string, number][]>([])
     const [totalFines, setTotalFines] = useState([])
     const [loading, setLoading] = useState(false)
@@ -74,13 +36,14 @@ export default function Searchdata(props: SearchDataProps){
             setNoResults(false)
             setLoading(true)
             const response = await fetch(`${config.backendUrl}/license-plate/${currentQuerry}/${currentHeat}`);
-            const json: SearchPlateData[] = await response.json();
+            const json: PlateDataInterface[] = await response.json();
             if (json.length === 0) {
                 setNoResults(true);
                 setLoading(false);
                 return
             }
             setData(cleanData(json));
+            console.log(Object.entries(json[0]))
             getCount(json);
             setLoading(false);
         }
@@ -101,19 +64,11 @@ export default function Searchdata(props: SearchDataProps){
 
     }, [currentQuerry, currentHeat])
 
-    // useEffect(() => {
-    //     console.log("display use effect")
-    //     if(display.current){
-    //         console.log("here")
-    //         setCssBasedOnWidth()
-    //     }
-    // }, [display.current])
-
-    function cleanData(data: SearchPlateData[]) {
+    function cleanData(data: PlateDataInterface[]) {
         
-        const cleanData = data.map((instance: SearchPlateData): SearchPlateData => {
+        const cleanData = data.map((instance: PlateDataInterface): PlateDataInterface => {
             
-            const violationNamesObject: ViolationNamesObject = {
+            const violationNamesObject: ViolationNamesObjectInterface = {
                 "FAIL TO DSPLY MUNI METER RECPT": "NO METER RECPT",
                 "NO STANDING-DAY/TIME LIMITS": "NO STANDING DTL",
                 "NO STANDING-COMM METER ZONE": "NO STANDING COM ZONE",
@@ -139,10 +94,10 @@ export default function Searchdata(props: SearchDataProps){
 
     }
     
-    function getCount(arr: SearchPlateData[]): void {
-        let countObject: CountObject = {};
+    function getCount(arr: PlateDataInterface[]): void {
+        let countObject: CountObjectInterface = {};
 
-        arr.forEach((entry: SearchPlateData) => {
+        arr.forEach((entry: PlateDataInterface) => {
             if (countObject[entry.violation]) {
                 countObject[entry.violation]++
             } else if (entry.violation !== null) {

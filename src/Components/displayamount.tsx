@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 
-function addCurrencyFormat(str) {
-    const num = parseInt(str);
+function addCurrencyFormat(num: number) {
+    // const num = parseInt(str);
 
-    if (isNaN(num)) {
-        return str;
-    }
+    // if (isNaN(num)) {
+    //     return str;
+    // }
 
     const formattedNum = num.toLocaleString('en-US', {
         style: 'currency',
@@ -15,17 +15,22 @@ function addCurrencyFormat(str) {
     return formattedNum;
 }
 
-export default function DisplayAmount({inputNumber}){
+interface DisplayAmountInterface {
+    inputNumber: number
+}
+
+export default function DisplayAmount(props: DisplayAmountInterface){
+    const { inputNumber } = props
     const [display, setDisplay] = useState('');
 
     useEffect(()=>{
-        async function delay(duration) {
+        async function delay(duration: number) {
             return new Promise((resolve) => {
                 setTimeout(resolve, duration);
             });
         }
 
-        async function increment(number) {
+        async function increment(number: number) {
             for(let i = Math.floor(inputNumber - 500); i <= number; i++) {
                 await delay(1);
                 setDisplay(addCurrencyFormat(i))

@@ -35,13 +35,13 @@ export default function PieChart(props: PieChartProps){
         layout: {
             padding: 20
         },
-        // plugins: {
-        //     legend: {
-        //         display: false,
-        //         position: "right",
-        //         align: 'start'
-        //     }
-        // }
+        plugins: {
+            legend: {
+                display: false,
+                // position: "right",
+                // align: 'start'
+            }
+        }
     }
 
     return(

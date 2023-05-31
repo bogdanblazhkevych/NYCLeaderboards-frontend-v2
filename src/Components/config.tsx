@@ -1,10 +1,4 @@
-interface TopTenInterface {
-    "plate": string,
-    "total_fines": number,
-    "sequence": number
-}
-
-interface SearchPlateData {
+export interface PlateDataInterface {
     plate: string,
     state: string,
     issue_date: string,
@@ -28,6 +22,52 @@ interface SearchPlateData {
     summons_image: string
 }
 
+interface SetPlateDataInterface {
+    (data: PlateDataInterface[]): void
+}
+
+export interface SearchDataPropsInterface {
+    currentHeat: string,
+    currentQuerry: string
+}
+
+export interface ViolationNamesObjectInterface {
+    [key: string]: string
+}
+
+export interface CountObjectInterface {
+    [key: string]: number
+}
+
+export interface TopTenDataPropsInterface {
+    currentHeat: string,
+    allPlatesCache: PlateDataInterface[],
+    setAllPlatesCache: SetPlateDataInterface,
+    passengerPlatesCache: PlateDataInterface[],
+    setPassengerPlatesCache: SetPlateDataInterface,
+    vanityPlatesCache: PlateDataInterface[],
+    setVanityPlatesCache: SetPlateDataInterface,
+    tlcPlatesCache: PlateDataInterface[],
+    setTlcPlatesCache: SetPlateDataInterface,
+}
+
+export interface HeatCacheInterface {
+    [key: string]: PlateDataInterface[]
+}
+
+export interface SetHeatCacheInterface {
+    [key: string]: SetPlateDataInterface
+}
+
+interface TopTenInterface {
+    "plate": string,
+    "total_fines": number,
+    "sequence": number
+}
+
+
+
+
 
 // interface CountObject {
 //     [key: string]: number
@@ -36,7 +76,7 @@ interface SearchPlateData {
 interface ConfigInterface {
     backendURL: string,
     topTenPlaceHolder: TopTenInterface[],
-    searchPlaceHolder: SearchPlateData[],
+    searchPlaceHolder: PlateDataInterface[],
     countPlaceHolder: [string, number][]
 }
 
