@@ -46,9 +46,9 @@ export default function Navbar(props: NavbarProps) {
                     <ImSearch />
                 </div>
 
-                {/* <div className={navbarcss.camerabutton} id="camera" onClick={changeDisplay} style={changeStyle('camera')}>
+                <div className={navbarcss.camerabutton} id="camera" onClick={changeDisplay} style={changeStyle('camera')}>
                     <ImCamera />
-                </div> */}
+                </div>
 
             </div>
 

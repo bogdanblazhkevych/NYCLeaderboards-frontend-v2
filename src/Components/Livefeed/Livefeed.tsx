@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 
 export default function LiveFeed() {
-    const videoRef = useRef(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -11,6 +11,9 @@ export default function LiveFeed() {
         navigator.mediaDevices.getUserMedia(constraints)
           .then((stream) => {
             let video = videoRef.current;
+            if (video === null) {
+              return
+            }
             video.srcObject = stream;
             video.play();
           })

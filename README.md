@@ -1,5 +1,13 @@
 <h1 align=center>NYCLeaderboards <br /> Frontend <br /> V2</h1>
 
+<h1>05/32/2023</h1>
+<ul>
+    <li>Updated Code</li>
+    - Every component is now re-written in typescript. Everything is now type safe except fetching data which soon will be
+    <li>Began Developing Camera Feature</li>
+    - Users should be able to point their camera at a plate, and it should scan and return a querry very future feature
+</ul> 
+
 <h1>05/28/2023</h1>
 <ul>
     <li>Updated Queries</li>

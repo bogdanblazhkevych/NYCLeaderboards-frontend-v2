@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { ReactElement } from "react";
-// import Camera from "../Camera/Camera";
 import Searchdata from "../SearchData/Searchdata";
 import { PlateDataInterface } from "../config"
 import Topten from "../TopTen/Topten";
+import Camera from "../Camera/Camera";
 
 interface DisplayDataProps {
     currentDisplay: string,
@@ -27,12 +27,12 @@ export default function DisplayData(props: DisplayDataProps){
         if (selectedDisplay === "search") {
             return <Searchdata currentHeat={selectedHeat} currentQuerry={selectedQuerry}/>
         }
+        if (selectedDisplay === "camera") {
+            return <Camera />
+        }
         else {
             return <></>
         }
-        // if (selectedDisplay === "camera") {
-        //     return <Camera />
-        // }
     }
 
     return(
