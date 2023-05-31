@@ -8,7 +8,7 @@ interface SearchPlateData {
     plate: string,
     state: string,
     issue_date: string,
-    fine_amount: number,
+    fine_amount: string,
     county: string,
     violation: string,
     summons_number: string,
@@ -37,6 +37,10 @@ interface ViolationNamesObject {
     [key: string]: string
 }
 
+interface CountObject {
+    [key: string]: number
+}
+
 export default function Searchdata(props: SearchDataProps){
     const { currentHeat, currentQuerry } = props 
 
@@ -59,7 +63,7 @@ export default function Searchdata(props: SearchDataProps){
     const display = useRef(null)
 
     const [data, setData] = useState<SearchPlateData[]>([])
-    const [violationCount, setViolationCount] = useState([])
+    const [violationCount, setViolationCount] = useState<[string, number][]>([])
     const [totalFines, setTotalFines] = useState([])
     const [loading, setLoading] = useState(false)
     const [noResults, setNoResults] = useState(false)
@@ -135,8 +139,8 @@ export default function Searchdata(props: SearchDataProps){
 
     }
     
-    function getCount(arr: SearchPlateData[]) {
-        let countObject = {};
+    function getCount(arr: SearchPlateData[]): void {
+        let countObject: CountObject = {};
 
         arr.forEach((entry: SearchPlateData) => {
             if (countObject[entry.violation]) {
@@ -153,7 +157,7 @@ export default function Searchdata(props: SearchDataProps){
         setViolationCount(sortedEntries)
     }
 
-    function addCurrencyFormat(str) {
+    function addCurrencyFormat(str: string): string {
         const num = parseInt(str);
         if (isNaN(num)) {
             return str;
@@ -167,9 +171,9 @@ export default function Searchdata(props: SearchDataProps){
 
     }
 
-    function makeDate(rawDate) {
+    function makeDate(rawDate: string) {
         const dateObject = new Date(rawDate);
-        const options = {
+        const options: Intl.DateTimeFormatOptions = {
             month: "2-digit",
             day: "2-digit",
             year: "numeric"
@@ -178,10 +182,10 @@ export default function Searchdata(props: SearchDataProps){
         return date
     }
 
-    function splitString(str) {
-        if(typeof str !== "string") {
-            return;
-        }
+    function splitString(str: string): string {
+        // if(typeof str !== "string") {
+        //     return;
+        // }
 
         if(str.length > 27) {
             let newString = str.slice(0, 27) + "..."
@@ -191,11 +195,11 @@ export default function Searchdata(props: SearchDataProps){
         return str
     }
 
-    function getPercent(totalsum, platesum) {
-        const decimal = (platesum * 100) / totalsum;
-        const percent = decimal.toFixed(6) + "%"
-        return percent
-    }
+    // function getPercent(totalsum, platesum) {
+    //     const decimal = (platesum * 100) / totalsum;
+    //     const percent = decimal.toFixed(6) + "%"
+    //     return percent
+    // }
 
     if (loading) {
         return (
