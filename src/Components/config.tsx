@@ -1,3 +1,46 @@
+interface TopTenInterface {
+    "plate": string,
+    "total_fines": number,
+    "sequence": number
+}
+
+interface SearchPlateData {
+    plate: string,
+    state: string,
+    issue_date: string,
+    fine_amount: string,
+    county: string,
+    violation: string,
+    summons_number: string,
+    total_fines: string,
+    sequence: number,
+    license_type: string,
+    violation_time: string,
+    judgment_entry_date: any,
+    penalty_amount: string,
+    interest_amount: string,
+    reduction_amount: string,
+    payment_amount: string,
+    amount_due: string,
+    precinct: string,
+    issuing_agency: string,
+    violation_status: any,
+    summons_image: string
+}
+
+
+// interface CountObject {
+//     [key: string]: number
+// }
+
+interface ConfigInterface {
+    backendURL: string,
+    topTenPlaceHolder: TopTenInterface[],
+    searchPlaceHolder: SearchPlateData[],
+    countPlaceHolder: [string, number][]
+}
+
+
 export const config = {
     backendUrl: "https://api.leaderboards.nyc", //delete when uploading to git. to tesl loacly, replace with http://<your ip>:<your server port>
     topTenPlaceHolder : [

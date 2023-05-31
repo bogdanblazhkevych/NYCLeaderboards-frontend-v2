@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import searchdatacss from './searchdatacss.module.css'
-import PieChart from '../PieChart/PieChart'
 import { config } from '../config'
 import Loading from '../Loading/Loading'
+import PieChart from '../PieChart/PieChart'
 
 interface SearchPlateData {
     plate: string,
