@@ -1,16 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import passwordcss from "./password.module.css"
-import { config } from './../config.js'
+import { config } from '../config'
 
-export default function Password({setIsAuthenticated}){
-    const inputRef = useRef(null)
+interface PasswordInterface {
+    setIsAuthenticated(input: boolean): void
+}
 
-    const [inputPass, setInputPass] = useState('')
-    const [localIsAuthenticated, setLocalIsAuthenticated] = useState('')
-    const [isFetching, setIsFetching] = useState(false)
+export default function Password(props: PasswordInterface){
+    const { setIsAuthenticated } = props
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    const [inputPass, setInputPass] = useState<string>('')
+    const [localIsAuthenticated, setLocalIsAuthenticated] = useState<string | boolean>('')
+    const [isFetching, setIsFetching] = useState<boolean>(false)
     
 
-    async function handleKeyDown(e){
+    async function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>){
         if (e.key === 'Enter') {
             setIsFetching(true)
             const response = await fetch(`${config.backendUrl}/password/${inputPass}`);
@@ -21,18 +26,18 @@ export default function Password({setIsAuthenticated}){
         }
     }
 
-    function handleChange(e){
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>){
         setInputPass(e.target.value)
     }
 
-    async function delay(duration) {
+    async function delay(duration: number) {
         return new Promise((resolve) => {
             setTimeout(resolve, duration);
         });
     }
 
     async function wrondPassword(){
-        if (localIsAuthenticated === false) {
+        if (localIsAuthenticated === false && inputRef.current !== null) {
             inputRef.current.style.transition = "none"
             inputRef.current.style.border = "1px solid red"
             await delay(500)
