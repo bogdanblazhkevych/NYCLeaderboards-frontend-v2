@@ -9,22 +9,10 @@ interface NavbarProps {
     currentDisplay: string
 }
 
-interface ButtonsInterface {
-    Id: string,
-    Icon: JSX.Element,
-    Classname: string
-}
-
 export default function Navbar(props: NavbarProps) {
     const { setCurrentDisplay, currentDisplay } = props;
     const [currentSelection, setCurrentSelection] = useState<string>("topten");
-
-    const buttons: ButtonsInterface[] = [
-        {Id: "topten", Classname: navbarcss.toptenbutton, Icon: <ImListNumbered />},
-        {Id: "search", Classname: navbarcss.searchbutton, Icon: <ImSearch />},
-        {Id: "camera", Classname: navbarcss.camerabutton, Icon: <ImCamera />}
-    ]
-
+    
     useEffect(()=> {
         setCurrentSelection(currentDisplay)
     }, [currentDisplay])
@@ -51,11 +39,7 @@ export default function Navbar(props: NavbarProps) {
 
             <div className={navbarcss.menu}>
 
-                {buttons.map((button) => {
-                    return <div className={button.Classname} id={button.Id} onClick={changeDisplay} style={changeStyle(button.Id)}>{button.Icon}</div>
-                })}
-
-                {/* <div className={navbarcss.toptenbutton} id="topten" onClick={changeDisplay} style={changeStyle('topten')}>
+                <div className={navbarcss.toptenbutton} id="topten" onClick={changeDisplay} style={changeStyle('topten')}>
                     <ImListNumbered />
                 </div>
 
@@ -65,7 +49,7 @@ export default function Navbar(props: NavbarProps) {
 
                 <div className={navbarcss.camerabutton} id="camera" onClick={changeDisplay} style={changeStyle('camera')}>
                     <ImCamera />
-                </div> */}
+                </div> 
 
             </div>
 
