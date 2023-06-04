@@ -29,8 +29,8 @@ export default function LiveFeed() {
               if (video === null || context === null) {
                 return
               }
-              canvas.width = video.videoWidth;
-              canvas.height = video.videoHeight;
+              canvas.width = video.videoWidth / 5;
+              canvas.height = video.videoHeight / 5;
               context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
               const imageData = canvas.toDataURL('image/jpeg');
               
@@ -60,7 +60,7 @@ export default function LiveFeed() {
     return (
       <>
         <video style={{width: "100%"}} ref={videoRef} autoPlay muted playsInline/>
-        <canvas ref={canvasRef} style={{ display: 'none' }}/>
+        <canvas ref={canvasRef}/>
       </>
     )
 }

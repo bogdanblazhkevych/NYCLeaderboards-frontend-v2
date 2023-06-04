@@ -12,10 +12,6 @@ function App() {
   const [currentHeat, setCurrentHeat] = useState<string>('total_fines');
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
 
-  // useEffect(()=>{
-  //   localStorage.setItem("isAuthenticated", isAuthenticated)
-  // }, [])
-
   return (
     <div className="App">
 
@@ -30,10 +26,7 @@ function App() {
       <Searchbar setCurrentSearchQuerry={setCurrentSearchQuerry} setCurrentDisplay={setCurrentDisplay}/>
       <HeatSelect setCurrentHeat={setCurrentHeat}/>
       <DisplayData currentDisplay={currentDisplay} currentHeat={currentHeat} currentSearchQuerry={currentSearchQuerry}/> */}
-
-      {/* <Password /> */}
-      {/* <Loading /> */}
-      {/* <Soon /> */}
+      
     </div>
   );
 }
