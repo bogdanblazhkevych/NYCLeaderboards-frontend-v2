@@ -16,13 +16,12 @@ export default function Navbar(props: NavbarProps) {
         setCurrentSelection(currentDisplay)
     }, [currentDisplay])
 
-    function changeDisplay(e: React.MouseEvent<HTMLDivElement>) {
-        let displayTarget = e.currentTarget.id;
-        setCurrentDisplay(displayTarget)
+    function changeDisplay(e: React.MouseEvent<HTMLDivElement>): void {
+        setCurrentDisplay(e.currentTarget.id)
         setCurrentSelection(e.currentTarget.id)
     }
 
-    function changeStyle(target: string) {
+    function changeStyle(target: string): {[key: string]: string} {
         if(target === currentSelection){
             return {color: '#2D2D2D', backgroundColor: 'white'}
         }
