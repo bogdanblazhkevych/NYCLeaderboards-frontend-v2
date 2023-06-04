@@ -82,7 +82,7 @@ interface ConfigInterface {
 
 
 export const config = {
-    backendUrl: "https://api.leaderboards.nyc", //delete when uploading to git. to tesl loacly, replace with http://<your ip>:<your server port>
+    backendUrl: "http://api.leaderboards.nyc", //delete when uploading to git. to tesl loacly, replace with http://<your ip>:<your server port>
     topTenPlaceHolder : [
         {
             "plate": "BVH5939",

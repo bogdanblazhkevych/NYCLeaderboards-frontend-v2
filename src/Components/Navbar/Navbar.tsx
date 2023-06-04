@@ -2,6 +2,7 @@ import React from "react";
 import navbarcss from "./Navbarcss.module.css";
 import { ImSearch, ImCamera, ImListNumbered } from 'react-icons/im'
 import { useEffect, useState } from 'react'
+import { JsxEmit } from "typescript";
 
 interface NavbarProps {
     setCurrentDisplay: (currentDisplay: string) => void,
@@ -10,16 +11,16 @@ interface NavbarProps {
 
 export default function Navbar(props: NavbarProps) {
     const { setCurrentDisplay, currentDisplay } = props;
-    const [currentSelection, setCurrentSelection] = useState<string>("topten")
-
+    const [currentSelection, setCurrentSelection] = useState<string>("topten");
+    
     useEffect(()=> {
         setCurrentSelection(currentDisplay)
     }, [currentDisplay])
 
-    function changeDisplay(e: React.MouseEvent<HTMLDivElement>) {
+    function changeDisplay(e: React.MouseEvent<HTMLDivElement>): void {
         let displayTarget = e.currentTarget.id;
         setCurrentDisplay(displayTarget)
-        setCurrentSelection(e.currentTarget.id)
+        setCurrentSelection(displayTarget)
     }
 
     function changeStyle(target: string) {
@@ -48,7 +49,7 @@ export default function Navbar(props: NavbarProps) {
 
                 <div className={navbarcss.camerabutton} id="camera" onClick={changeDisplay} style={changeStyle('camera')}>
                     <ImCamera />
-                </div>
+                </div> 
 
             </div>
 
