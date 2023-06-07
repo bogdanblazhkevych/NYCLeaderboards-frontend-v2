@@ -15,7 +15,7 @@ export default function Password(props: PasswordInterface){
     const [isFetching, setIsFetching] = useState<boolean>(false)
     
 
-    async function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>){
+    async function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>): Promise<void>{
         if (e.key === 'Enter') {
             setIsFetching(true)
             const response = await fetch(`${config.backendUrl}/password/${inputPass}`);
@@ -26,17 +26,17 @@ export default function Password(props: PasswordInterface){
         }
     }
 
-    function handleChange(e: React.ChangeEvent<HTMLInputElement>){
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>): void{
         setInputPass(e.target.value)
     }
 
-    async function delay(duration: number) {
+    async function delay(duration: number): Promise<void> {
         return new Promise((resolve) => {
             setTimeout(resolve, duration);
         });
     }
 
-    async function wrondPassword(){
+    async function wrondPassword(): Promise<void>{
         if (localIsAuthenticated === false && inputRef.current !== null) {
             inputRef.current.style.transition = "none"
             inputRef.current.style.border = "1px solid red"
