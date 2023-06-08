@@ -13,11 +13,11 @@ export default function Searchbar(props: SearchbarProps){
 
     const [currentSearch, setCurrentSearch] = useState<string>('')
 
-    function setLocalSearchState(e: React.ChangeEvent<HTMLInputElement>) {
-        setCurrentSearch(e.target.value)
+    function setLocalSearchState(e: React.ChangeEvent<HTMLInputElement>): void {
+        setCurrentSearch(e.target.value.replace(/\s/g, ''))
     }
 
-    function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>): void {
         if (e.key === 'Enter') {
             setCurrentDisplay('search')     
             setCurrentSearchQuerry(currentSearch)
