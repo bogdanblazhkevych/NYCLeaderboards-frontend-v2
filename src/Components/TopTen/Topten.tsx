@@ -50,13 +50,10 @@ export default function Topten(props: TopTenDataPropsInterface){
         for(let i = 1; i <= 3; i++) {
             const element = document.getElementById("rank" + i);
 
-            if (element === null) {
-                return
+            if (element) {
+                const elementfontsize = Math.ceil(element.clientWidth / 4) + "px";
+                element.style.setProperty("--fontsize", elementfontsize)
             }
-
-            const elementfontsize = Math.ceil(element.clientWidth / 4) + "px";
-
-            element.style.setProperty("--fontsize", elementfontsize)
         }
 
         const podium = document.getElementById("podium");

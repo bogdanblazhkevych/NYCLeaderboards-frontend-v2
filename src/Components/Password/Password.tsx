@@ -61,7 +61,7 @@ export default function Password(props: PasswordInterface){
                         NYC Leaderboards
                     </div>
                     <div className={passwordcss.beta}>
-                        BETA  1.0.4
+                        BETA  1.0.5
                     </div>
                 </div>
 
