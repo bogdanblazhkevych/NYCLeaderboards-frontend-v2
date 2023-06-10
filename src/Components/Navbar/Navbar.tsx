@@ -2,7 +2,7 @@ import React from "react";
 import navbarcss from "./Navbarcss.module.css";
 import { ImSearch, ImCamera, ImListNumbered } from 'react-icons/im'
 import { useEffect, useState } from 'react'
-import { JsxEmit } from "typescript";
+// import { JsxEmit } from "typescript";
 
 interface NavbarProps {
     setCurrentDisplay: (currentDisplay: string) => void,
@@ -47,9 +47,9 @@ export default function Navbar(props: NavbarProps) {
                     <ImSearch />
                 </div>
 
-                <div className={navbarcss.camerabutton} id="camera" onClick={changeDisplay} style={changeStyle('camera')}>
+                {/* <div className={navbarcss.camerabutton} id="camera" onClick={changeDisplay} style={changeStyle('camera')}>
                     <ImCamera />
-                </div> 
+                </div>  */}
 
             </div>
 
