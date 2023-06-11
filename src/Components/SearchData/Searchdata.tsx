@@ -230,7 +230,6 @@ export default function Searchdata(props: SearchDataPropsInterface){
                                     <tr className={searchdatacss.searchtr} key={violation.summons_number}>
                                         <td className={searchdatacss.offensetd}>{violation.violation}</td>
                                         <td className={searchdatacss.datetd}>{makeDate(violation.issue_date)}</td>
-                                        {/* <td className={searchdatacss.finetd}><DisplayAmount inputNumber={violation.fine_amount}/></td> */}
                                         <td className={searchdatacss.finetd}>{addCurrencyFormat(violation.fine_amount)}</td>
                                     </tr>
                                 )

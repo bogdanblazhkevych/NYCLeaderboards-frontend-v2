@@ -1,11 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
 function addCurrencyFormat(num: number) {
-    // const num = parseInt(str);
-
-    // if (isNaN(num)) {
-    //     return str;
-    // }
 
     const formattedNum = num.toLocaleString('en-US', {
         style: 'currency',
