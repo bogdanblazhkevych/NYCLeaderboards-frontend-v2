@@ -26,7 +26,6 @@ export default function Searchdata(props: SearchDataPropsInterface){
 
     const [data, setData] = useState<PlateDataInterface[]>([])
     const [violationCount, setViolationCount] = useState<[string, number][]>([])
-    const [totalFines, setTotalFines] = useState([])
     const [loading, setLoading] = useState(false)
     const [noResults, setNoResults] = useState(false)
 
@@ -43,23 +42,12 @@ export default function Searchdata(props: SearchDataPropsInterface){
                 return
             }
             setData(cleanData(json));
-            console.log(Object.entries(json[0]))
             getCount(json);
             setLoading(false);
         }
 
-        // async function getTotalFines() {
-        //     fetch(`${config.backendUrl}/license-plate/${currentHeat}`)
-        //     .then(response => response.json())
-        //     .then(totalfinesdata => {
-        //         setTotalFines(totalfinesdata);
-        //     })
-        //     .catch(error => console.error(error))
-        // }
-
         if(currentQuerry.length > 0){
             getPlateData();
-            // getTotalFines();
         }
 
     }, [currentQuerry, currentHeat])
@@ -175,25 +163,6 @@ export default function Searchdata(props: SearchDataPropsInterface){
         const date = dateObject.toLocaleDateString("en-US", options)
         return date
     }
-
-    function splitString(str: string): string {
-        // if(typeof str !== "string") {
-        //     return;
-        // }
-
-        if(str.length > 27) {
-            let newString = str.slice(0, 27) + "..."
-            return newString
-        }
-
-        return str
-    }
-
-    // function getPercent(totalsum, platesum) {
-    //     const decimal = (platesum * 100) / totalsum;
-    //     const percent = decimal.toFixed(6) + "%"
-    //     return percent
-    // }
 
     if (loading) {
         return (
@@ -314,14 +283,6 @@ export default function Searchdata(props: SearchDataPropsInterface){
 
                 </div>
             </div>
-
-            {/* <div className={searchdatacss.contributiontext} id="contributiontext">
-                <span className={searchdatacss.contributiontotalfines}>{addCurrencyFormat(totalFines[0].allfinestotal)}</span>
-                <br></br>
-                In fines issued since 2016. You account for
-                <br></br>
-                <span className={searchdatacss.contributionpercent}>{getPercent(totalFines[0].allfinestotal, data[0].total_fines)}</span>
-            </div> */}
 
             <div className={searchdatacss.piechartwrapper}>
                 <PieChart dataProps={violationCount} colors={colors}/>
