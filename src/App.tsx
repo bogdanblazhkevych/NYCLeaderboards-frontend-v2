@@ -4,7 +4,7 @@ import Navbar from './Components/Navbar/Navbar';
 import { useState, useEffect } from 'react'
 import DisplayData from './Components/DisplayData/DisplayData';
 import Searchbar from './Components/SearchBar/Searchbar';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
 function App() {
   const [currentDisplay, setCurrentDisplay] = useState('topten');
@@ -12,7 +12,8 @@ function App() {
   const [currentHeat, setCurrentHeat] = useState('total_fines');
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.send({ hitType: "pageview", page: "/", title: "homepage-view" });
+    console.log(window.location.pathname + window.location.search)
   }, []);
 
   return (
