@@ -24,17 +24,18 @@ export default function Topten(props: TopTenDataPropsInterface){
     }
 
     // why is this function declared inside the effect? Why is it getting re-declared every time
-    async function getTopTenData() {
-        if (heatCache[currentHeat].length > 0) {
-            return
-        }
-
-        const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`)
-        const json = await response.json();
-        setHeatCache[currentHeat](json)
-    }
-
+    
     useEffect(() => {
+        async function getTopTenData() {
+            if (heatCache[currentHeat].length > 0) {
+                return
+            }
+    
+            const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`)
+            const json = await response.json();
+            setHeatCache[currentHeat](json)
+        }
+        
         getTopTenData();
     }, [currentHeat])
 
