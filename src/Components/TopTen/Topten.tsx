@@ -22,20 +22,21 @@ export default function Topten(props: TopTenDataPropsInterface){
         "total_fines_srf": setVanityPlatesCache,
         "total_fines_omt": setTlcPlatesCache
     }
-    useEffect(() => {
 
+    // why is this function declared inside the effect? Why is it getting re-declared every time
+    
+    useEffect(() => {
         async function getTopTenData() {
             if (heatCache[currentHeat].length > 0) {
                 return
             }
-
+    
             const response = await fetch(`${config.backendUrl}/topten/${currentHeat}`)
             const json = await response.json();
             setHeatCache[currentHeat](json)
         }
-
+        
         getTopTenData();
-
     }, [currentHeat])
 
     useEffect(()=> {
@@ -45,8 +46,6 @@ export default function Topten(props: TopTenDataPropsInterface){
     }, [heatCache[currentHeat]])
 
     function setCssBasedOnBigPlateWidth() {
-
-
         for(let i = 1; i <= 3; i++) {
             const element = document.getElementById("rank" + i);
 
@@ -59,10 +58,10 @@ export default function Topten(props: TopTenDataPropsInterface){
         const podium = document.getElementById("podium");
 
         if (podium === null) {
-            return
+            return;
         }
 
-        const heightmargin = Math.ceil(podium.clientHeight / 3) + "px"
+        const heightmargin = `${Math.ceil(podium.clientHeight / 3)}px`;
 
         podium.style.setProperty("--heightmargin", heightmargin)
         //maybe use refs instead of document.getElementById?
