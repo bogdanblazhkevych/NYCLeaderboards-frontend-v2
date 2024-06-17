@@ -1,7 +1,7 @@
 <h1 align=center>LEADERBOARDS.NYC</h1>
 
 <p align=center>
-Leaderboards.nyc is a data visualization and lookup tool that provides real-time transparency into traffic violation enforcement across New York City. By pulling over 100 million records from public APIs and optimizing responsive queries, the site delivers insights into fine trends down to the license plate level.    
+Leaderboards.nyc is a data visualization and lookup tool that provides real-time transparency into traffic violation enforcement across New York City. By pulling over 100 million records from public APIs and optimizing responsive queries, the site delivers keen insights into the driving patterns of New York City residents.    
 </p>
 
 <p align="center">
